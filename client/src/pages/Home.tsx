@@ -67,6 +67,7 @@ const navItems = [
   { id: "schedule", label: "Daily schedule", icon: CalendarDays },
   { id: "progress", label: "Progress report", icon: Gauge },
   { id: "focus", label: "Priority focus", icon: Target },
+  { id: "priority-syllabus", label: "Priority syllabus", icon: BookOpen, href: "/priority-syllabus" },
 ];
 
 function getPlannedToday() {
@@ -161,6 +162,7 @@ export default function Home() {
             <p className="brand-subtitle">STUDY FIELD MANUAL</p>
           </div>
         </div>
+        <div className="rail-dossier-tab" aria-hidden="true"><img src={ASSETS.logo} alt="" /><span>FIELD / 26</span><i /></div>
 
         <section className="rail-command-card" aria-label="Campaign status">
           <div className="rail-command-top"><span>CAMPAIGN STATUS</span><span className="status-light" /></div>
@@ -172,7 +174,9 @@ export default function Home() {
         <div className="rail-divider" />
         <p className="rail-caption">NAVIGATION</p>
         <nav className="rail-nav">
-          {navItems.map(({ id, label, icon: Icon }) => (
+          {navItems.map(({ id, label, icon: Icon, href }) => href ? (
+            <a key={id} className="rail-link" href={href}><Icon size={17} /> <span>{label}</span><ChevronRight size={15} /></a>
+          ) : (
             <button key={id} className="rail-link" onClick={() => jumpTo(id)}>
               <Icon size={17} /> <span>{label}</span><ChevronRight size={15} />
             </button>

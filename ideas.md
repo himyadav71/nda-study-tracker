@@ -81,3 +81,5 @@ The mark is a bold, geometric **compass-card / check signal**: a clipped orange 
 - The desktop briefing rail is a persistent dossier spine: it must show the compass/check mark, campaign status, day count, exam date and navigation cues at first glance.
 - Repeat the compass/check mark at command moments (hero, progress, footer) to build recognisable brand memory.
 - Divide the 28-day schedule into four named operational phases so the campaign progression is apparent before a user reads individual cards.
+- Treat the dossier spine as an unmistakable command surface with an orange edge, a field-identification tab and visible route cues on every desktop page.
+- Reserve Signal Orange for primary actions, P1 urgency, day stamps and milestones; keep P2 and P3 technical and subdued, reserving sage for completion only.

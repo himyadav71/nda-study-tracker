@@ -7,6 +7,18 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
+import PrioritySyllabus from "./pages/PrioritySyllabus";
+import { Route, Switch } from "wouter";
+
+function Router() {
+  return (
+    <Switch>
+      <Route path="/" component={Home} />
+      <Route path="/priority-syllabus" component={PrioritySyllabus} />
+      <Route component={Home} />
+    </Switch>
+  );
+}
 
 function App() {
   return (
@@ -14,7 +26,7 @@ function App() {
       <ThemeProvider defaultTheme="light">
         <TooltipProvider>
           <Toaster richColors position="bottom-right" />
-          <Home />
+          <Router />
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>
