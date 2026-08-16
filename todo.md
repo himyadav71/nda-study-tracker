@@ -5,3 +5,12 @@
 - [x] Show frequency evidence, recurring question models and selected must-do subtopics for every group.
 - [x] Add read/complete study status that persists alongside the existing daily-task tracker.
 - [x] Verify the new syllabus view on desktop and mobile, then save an updated checkpoint.
+
+## Practice and Test Centre Expansion
+
+- [x] Define a sourced PYQ question-bank schema and selected exam/question coverage.
+- [x] Add the Practice and Test Centre route, navigation and daily practice launcher.
+- [x] Implement timed mocks, answer selection, submission, scoring and answer review.
+- [x] Add paper, subject and priority-based filters for attemptable PYQ sets.
+- [x] Persist test history and submitted-drill review locally.
+- [x] Verify desktop/mobile test flows and save the completed checkpoint.

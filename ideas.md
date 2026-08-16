@@ -83,3 +83,6 @@ The mark is a bold, geometric **compass-card / check signal**: a clipped orange 
 - Divide the 28-day schedule into four named operational phases so the campaign progression is apparent before a user reads individual cards.
 - Treat the dossier spine as an unmistakable command surface with an orange edge, a field-identification tab and visible route cues on every desktop page.
 - Reserve Signal Orange for primary actions, P1 urgency, day stamps and milestones; keep P2 and P3 technical and subdued, reserving sage for completion only.
+- Every desktop route opens with a command cue: compass/check mark, route label, campaign metadata and signal-orange technical edge language.
+- DM Serif Display is reserved for decisive headings and figures; instructional copy remains brief, directive and operational.
+- Test, archive and practice cards use dossier tabs, clipped corners and technical-rule marks so the field-manual material language remains visible beyond the hero.

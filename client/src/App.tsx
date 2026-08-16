@@ -8,6 +8,7 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import PrioritySyllabus from "./pages/PrioritySyllabus";
+import PracticeCenter from "./pages/PracticeCenter";
 import { Route, Switch } from "wouter";
 
 function Router() {
@@ -15,6 +16,7 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/priority-syllabus" component={PrioritySyllabus} />
+      <Route path="/practice" component={PracticeCenter} />
       <Route component={Home} />
     </Switch>
   );

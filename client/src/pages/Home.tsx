@@ -68,6 +68,7 @@ const navItems = [
   { id: "progress", label: "Progress report", icon: Gauge },
   { id: "focus", label: "Priority focus", icon: Target },
   { id: "priority-syllabus", label: "Priority syllabus", icon: BookOpen, href: "/priority-syllabus" },
+  { id: "practice", label: "Practice & tests", icon: Trophy, href: "/practice" },
 ];
 
 function getPlannedToday() {
