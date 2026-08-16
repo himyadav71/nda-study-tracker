@@ -30,6 +30,7 @@ import {
   Sparkles,
   Target,
   Trophy,
+  School,
   X,
   Zap,
 } from "lucide-react";
@@ -51,6 +52,7 @@ const subjectIcons: Record<Subject, LucideIcon> = {
   GK: Atom,
   "Current Affairs": MapPinned,
   Mock: Trophy,
+  CBSE: School,
 };
 
 const filterOptions: Array<{ label: FilterName; icon: LucideIcon }> = [
@@ -59,6 +61,7 @@ const filterOptions: Array<{ label: FilterName; icon: LucideIcon }> = [
   { label: "English", icon: Languages },
   { label: "GK", icon: Atom },
   { label: "Current Affairs", icon: MapPinned },
+  { label: "CBSE", icon: School },
   { label: "Mocks", icon: Trophy },
 ];
 
@@ -202,12 +205,12 @@ export default function Home() {
 
       <main className="main-deck">
         <section id="overview" className="hero-brief" style={{ backgroundImage: `linear-gradient(90deg, rgba(11, 26, 44, 0.98) 0%, rgba(11, 26, 44, 0.90) 42%, rgba(11, 26, 44, 0.22) 100%), url(${ASSETS.hero})` }}>
-          <div className="hero-topline"><span className="pulse-dot" /> LIVE FIELD PLAN <span className="topline-rule" /> 16 AUG — 12 SEP 2026</div>
+          <div className="hero-topline"><span className="pulse-dot" /> CBSE HALF-YEARLY + NDA RUNWAY <span className="topline-rule" /> 16 AUG — 12 SEP 2026</div>
           <div className="hero-compass-lockup"><img src={ASSETS.logo} alt="" /><span><b>NDA / 2026</b><small>EXAM READINESS DECK</small></span></div>
           <div className="hero-copy">
             <p className="eyebrow">DAY {String(activeDay.day).padStart(2, "0")} / 28</p>
             <h1>One plan.<br /><em>Clearer progress.</em></h1>
-            <p className="hero-lead">A focused, school-friendly NDA preparation deck built around your highest-frequency PYQ topics.</p>
+            <p className="hero-lead">A dual-track preparation deck: secure your Class 12 half-yearly papers first, then convert the final runway into NDA score.</p>
             <div className="hero-actions">
               <button className="signal-button" onClick={() => jumpTo("today-brief")}>Issue today’s brief <ArrowUpRight size={17} /></button>
               <button className="quiet-button" onClick={() => jumpTo("schedule")}>View full schedule</button>
@@ -227,6 +230,7 @@ export default function Home() {
           <div className="today-grid">
             <article className="active-brief-card" style={{ backgroundImage: `linear-gradient(135deg, rgba(11, 26, 44, 0.96), rgba(11, 26, 44, 0.68)), url(${ASSETS.topo})` }}>
               <div className="active-card-top"><span className="day-stamp">DAY {String(activeDay.day).padStart(2, "0")}</span><span>{activeDay.shortDate}</span></div>
+              <div className={`day-mode ${activeDay.mode.toLowerCase().replace(" ", "-")}`}>{activeDay.mode}{activeDay.schoolPaper ? <span>· {activeDay.schoolPaper}</span> : null}</div>
               <h3>{activeDay.title}</h3>
               <p>{activeDay.focus}</p>
               <div className="active-progress"><span>{activeDone} / {activeDay.tasks.length} logged</span><div><i style={{ width: `${(activeDone / activeDay.tasks.length) * 100}%` }} /></div></div>
@@ -250,6 +254,7 @@ export default function Home() {
             <article className="stat-card"><div className="stat-icon orange"><Brain size={20} /></div><span>MATHEMATICS</span><strong>{subjectProgress("Mathematics").value}%</strong><small>{subjectProgress("Mathematics").done}/{subjectProgress("Mathematics").total} missions</small></article>
             <article className="stat-card"><div className="stat-icon blue"><Languages size={20} /></div><span>ENGLISH</span><strong>{subjectProgress("English").value}%</strong><small>{subjectProgress("English").done}/{subjectProgress("English").total} missions</small></article>
             <article className="stat-card"><div className="stat-icon sage"><Atom size={20} /></div><span>GAT / GK</span><strong>{subjectProgress("GK").value}%</strong><small>{subjectProgress("GK").done}/{subjectProgress("GK").total} missions</small></article>
+            <article className="stat-card"><div className="stat-icon school"><School size={20} /></div><span>CBSE HALF-YEARLY</span><strong>{subjectProgress("CBSE").value}%</strong><small>{subjectProgress("CBSE").done}/{subjectProgress("CBSE").total} missions</small></article>
           </div>
         </section>
 
@@ -265,7 +270,7 @@ export default function Home() {
             {visibleDays.map((day) => {
               const done = taskCompletedCount(day, completed);
               const isActive = day.day === activeDay.day;
-              const phase = day.day === 1 ? ["PHASE 01", "Build the scoring base", "DAY 01–07 · diagnostic, Algebra and Physics"] : day.day === 8 ? ["PHASE 02", "Extend the core", "DAY 08–14 · Mocks, Calculus and Science"] : day.day === 15 ? ["PHASE 03", "Position and probability", "DAY 15–21 · Geometry, Probability and Mock 02"] : day.day === 22 ? ["PHASE 04", "Capture and taper", "DAY 22–28 · final mocks, repair and pre-exam reset"] : null;
+              const phase = day.day === 1 ? ["PHASE 01", "Half-yearly command window", "DAY 01–12 · CBSE papers first, NDA continuity second"] : day.day === 13 ? ["PHASE 02", "Re-enter the NDA field", "DAY 13–16 · recover, diagnose and restore timing"] : day.day === 17 ? ["PHASE 03", "Accelerate the scoring core", "DAY 17–21 · P1 Maths, English, GAT and full mock"] : day.day === 22 ? ["PHASE 04", "Mimic, repair and taper", "DAY 22–28 · final mock, PYQ repair and pre-exam reset"] : null;
               return (
                 <div key={day.day} className="schedule-unit">
                   {phase && <div className="phase-marker"><span>{phase[0]}</span><strong>{phase[1]}</strong><em>{phase[2]}</em><div /></div>}
