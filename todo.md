@@ -30,5 +30,5 @@
 - [x] Add a study-material library with upload, organisation and retrieval flows.
 - [x] Verify the schedule and file-storage flows on desktop and mobile, then save a checkpoint.
 - [x] Verify Study Materials Library readiness: protected procedures, supported-file validation, anonymous sign-in gateway, responsive views, and account-scoped access were checked; live sign-in handoff was blocked externally by a 403 response.
-- [ ] Save the verified full-stack master-plan upgrade as a new checkpoint.
+- [x] Save the verified full-stack master-plan upgrade as a new checkpoint.
 - [x] Keep the Study Materials Library private to one signed-in account; do not add cross-student sharing or multi-student features.
