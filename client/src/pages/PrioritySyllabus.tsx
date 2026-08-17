@@ -3,7 +3,7 @@
  * Field Manual Progress Deck: an ink-navy dossier spine and PYQ-led priority cards make the whole syllabus actionable.
  */
 import { useEffect, useMemo, useState } from "react";
-import { Atom, BookOpen, Brain, Check, CheckCircle2, ChevronLeft, Circle, Compass, Filter, Gauge, GraduationCap, Languages, ListChecks, MapPinned, Menu, Target, Trophy, X } from "lucide-react";
+import { Atom, BookOpen, Brain, Check, CheckCircle2, ChevronLeft, Circle, Compass, Filter, FolderOpen, Gauge, GraduationCap, Languages, ListChecks, MapPinned, Menu, Target, Trophy, X } from "lucide-react";
 import { Link } from "wouter";
 import { priorityMeta, syllabusModules, type PriorityLevel, type SyllabusArea } from "@/data/prioritySyllabus";
 
@@ -55,6 +55,7 @@ export default function PrioritySyllabus() {
         <nav className="rail-nav">
           <Link href="/" className="rail-link"><Gauge size={17} /><span>Command deck</span><ChevronLeft size={15} /></Link>
           <button className="rail-link is-current" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}><BookOpen size={17} /><span>Priority syllabus</span><Check size={15} /></button>
+          <Link href="/materials" className="rail-link"><FolderOpen size={17} /><span>Study library</span><ChevronLeft size={15} /></Link>
           <button className="rail-link" onClick={() => selectArea("Mathematics")}><Brain size={17} /><span>Mathematics core</span><Target size={15} /></button>
           <button className="rail-link" onClick={() => selectArea("English")}><Languages size={17} /><span>English scoring</span><Target size={15} /></button>
           <button className="rail-link" onClick={() => selectArea("GAT")}><Atom size={17} /><span>GAT priority base</span><Target size={15} /></button>

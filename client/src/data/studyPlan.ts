@@ -1,204 +1,39 @@
-/**
- * Field Manual Progress Deck content model.
- * This edition pairs the user's Class 12 CBSE half-yearly examination window with the NDA II 2026 runway.
- */
+/** Combined Class 12 CBSE and NDA II 2026 time-block master plan. */
 export type Subject = "Mathematics" | "English" | "GK" | "Current Affairs" | "Mock" | "CBSE";
-
 export type StudyTask = { id: string; subject: Subject; title: string; duration: string; };
+export type StudyDay = { day: number; date: string; shortDate: string; week: number; title: string; focus: string; target: string; mode: "CBSE FIRST" | "DUAL TRACK" | "NDA FIRST"; timeBudget: string; schoolPaper?: string; checkpoint?: string; tasks: StudyTask[]; };
 
-export type StudyDay = {
-  day: number;
-  date: string;
-  shortDate: string;
-  week: number;
-  title: string;
-  focus: string;
-  target: string;
-  mode: "CBSE FIRST" | "DUAL TRACK" | "NDA FIRST";
-  schoolPaper?: string;
-  checkpoint?: string;
-  tasks: StudyTask[];
-};
-
-const tasks = (day: number, entries: Array<[Subject, string, string]>): StudyTask[] =>
-  entries.map(([subject, title, duration], index) => ({ id: `d${day}-${index + 1}`, subject, title, duration }));
+const tasks = (day: number, entries: Array<[Subject, string, string]>): StudyTask[] => entries.map(([subject, title, duration], index) => ({ id: `d${day}-${index + 1}`, subject, title, duration }));
 
 export const studyPlan: StudyDay[] = [
-  { day: 1, date: "2026-08-16", shortDate: "Sun · 16 Aug", week: 1, title: "English command prep", focus: "School paper first; NDA stays alive.", target: "Walk into English with texts, writing formats and time control ready.", mode: "CBSE FIRST", schoolPaper: "English half-yearly tomorrow", checkpoint: "CBSE English final revision · only 20 min NDA continuity", tasks: tasks(1, [
-    ["CBSE", "Flamingo revision: Poets and Pancakes, The Interview, Going Places and Jennifer’s Tigers — themes, character, quotations", "2 hr"],
-    ["CBSE", "English writing: Article Writing format + one unseen passage under time", "90 min"],
-    ["English", "NDA vocabulary: 15 error-log words and 10 idioms only", "20 min"],
-    ["CBSE", "Pack material, review answer structure and sleep early", "20 min"],
-  ]) },
-  { day: 2, date: "2026-08-17", shortDate: "Mon · 17 Aug", week: 1, title: "English exam → Maths/Bio bridge", focus: "Write cleanly, then pivot early.", target: "Start integral and Biology recall on the same day without burnout.", mode: "CBSE FIRST", schoolPaper: "CBSE English examination", tasks: tasks(2, [
-    ["CBSE", "English exam: 10-minute question scan, reserve final 8 minutes for grammar and presentation check", "Exam"],
-    ["CBSE", "Mathematics: indefinite-integral standard forms and substitution/parts formula recall", "90 min"],
-    ["CBSE", "Biology: Organisms & Populations — definitions, graphs, interactions and NCERT keywords", "75 min"],
-    ["Current Affairs", "NDA continuity: revise 5 short static-linked current-affairs cards", "15 min"],
-  ]) },
-  { day: 3, date: "2026-08-18", shortDate: "Tue · 18 Aug", week: 1, title: "Maths/Bio preparation 01", focus: "Prepare deeply on the first holiday.", target: "Finish the first complete pass of calculus and Botany.", mode: "CBSE FIRST", schoolPaper: "Preparatory holiday", tasks: tasks(3, [
-    ["CBSE", "Maths: indefinite integration — substitution, by-parts, partial fractions and standard results; solve 25 mixed questions", "3 hr"],
-    ["CBSE", "Biology: Organisms & Populations + Microbes in Human Welfare — NCERT diagrams, examples and one-page recall sheets", "2 hr"],
-    ["Mathematics", "NDA overlap: 10 standard integration models; tag errors only", "25 min"],
-    ["CBSE", "Active recall without notes: write 10 formulas and 15 Biology keywords", "25 min"],
-  ]) },
-  { day: 4, date: "2026-08-19", shortDate: "Wed · 19 Aug", week: 1, title: "Maths/Bio preparation 02", focus: "Practise the paper you will write.", target: "Complete one timed Mathematics set and one Biology recall loop.", mode: "CBSE FIRST", schoolPaper: "Preparatory holiday", checkpoint: "CBSE Maths mini-paper + Biology NCERT recall", tasks: tasks(4, [
-    ["CBSE", "Maths: definite integrals and complete UT 1–3 revision; 90-minute timed mixed set", "3 hr"],
-    ["CBSE", "Biology: Biotechnology Principles & Processes till cloning vector — flowcharts, enzymes, vectors and terms", "2 hr"],
-    ["CBSE", "Make a final two-page Maths formula sheet and a Biology chapter-mistake sheet", "45 min"],
-    ["English", "NDA maintenance: 15 vocabulary/idiom recalls only", "15 min"],
-  ]) },
-  { day: 5, date: "2026-08-20", shortDate: "Thu · 20 Aug", week: 1, title: "Maths/Bio exam day", focus: "Execute, then recover.", target: "Use remaining energy only for the next school paper.", mode: "CBSE FIRST", schoolPaper: "CBSE Mathematics & Biology examinations", tasks: tasks(5, [
-    ["CBSE", "Maths/Bio exams: attempt known questions first; label and return to longer calculations", "Exam"],
-    ["CBSE", "Music / C.S. contingency: organise syllabus notes for the next confirmed school slot", "45 min"],
-    ["CBSE", "Physics: Ray Optics formula preview — mirror/lens sign conventions only", "35 min"],
-    ["Current Affairs", "NDA continuity: 5-minute error-log glance; then sleep", "10 min"],
-  ]) },
-  { day: 6, date: "2026-08-21", shortDate: "Fri · 21 Aug", week: 1, title: "Music paper & Physics bridge", focus: "Use the formal half-yearly notice; keep C.S. flexible.", target: "Start Physics preparation immediately after the school slot.", mode: "CBSE FIRST", schoolPaper: "Music half-yearly per detailed syllabus notice · C.S. calendar contingency", tasks: tasks(6, [
-    ["CBSE", "Music: full-syllabus final recall — rag notes, taal-rupak, composers and written-answer structure", "Exam / 2 hr"],
-    ["CBSE", "If C.S. is confirmed instead, use this block for your teacher’s prescribed practical/theory revision", "School buffer"],
-    ["CBSE", "Physics: Ray Optics — mirrors, lenses, sign convention and image formula revision", "2 hr"],
-    ["GK", "NDA Physics overlap: 15 optics concept questions, no new notes", "20 min"],
-  ]) },
-  { day: 7, date: "2026-08-22", shortDate: "Sat · 22 Aug", week: 1, title: "Physics preparation 01", focus: "Optics concepts before numericals.", target: "Finish Ray Optics and practical procedure recall.", mode: "CBSE FIRST", schoolPaper: "Preparatory holiday", tasks: tasks(7, [
-    ["CBSE", "Physics: Ray Optics and Optical Instruments — formula sheet, ray diagrams, microscope/telescope and 20 numericals", "3 hr"],
-    ["CBSE", "Physics practicals: concave mirror, convex lens, concave lens and prism minimum deviation procedures", "90 min"],
-    ["CBSE", "Wave Optics: YDSE, diffraction, interference and key derivations", "90 min"],
-    ["English", "NDA maintenance: 20 grammar questions from the error log", "20 min"],
-  ]) },
-  { day: 8, date: "2026-08-23", shortDate: "Sun · 23 Aug", week: 2, title: "Physics rehearsal", focus: "Write, check, correct.", target: "Complete a realistic Physics rehearsal and revise all practical viva points.", mode: "CBSE FIRST", schoolPaper: "Sunday rehearsal day", checkpoint: "Physics 90-minute paper simulation + optics practical viva", tasks: tasks(8, [
-    ["CBSE", "Physics: 90-minute mixed paper from UT 1–3, Ray Optics and Wave Optics; mark every derivation gap", "2 hr"],
-    ["CBSE", "Optics practical viva: apparatus, graph, formula, precautions and error sources", "90 min"],
-    ["CBSE", "Final ray-diagram and formula recall without notes", "45 min"],
-    ["GK", "NDA Physics: 20 quick optics/electricity PYQs only if school revision is complete", "20 min"],
-  ]) },
-  { day: 9, date: "2026-08-24", shortDate: "Mon · 24 Aug", week: 2, title: "Physics exam → Chemistry launch", focus: "Finish cleanly; begin organic recall.", target: "Move from optics to carbonyl chemistry with a low-stress bridge.", mode: "CBSE FIRST", schoolPaper: "CBSE Physics examination", tasks: tasks(9, [
-    ["CBSE", "Physics exam: diagram labels, units and final numerical checks before submission", "Exam"],
-    ["CBSE", "Chemistry: Aldehydes, Ketones & Carboxylic Acids — functional groups, nomenclature and core reactions", "2 hr"],
-    ["CBSE", "Chemistry practical: identify functional groups and write positive observations", "45 min"],
-    ["Current Affairs", "NDA continuity: 10-minute news-note review", "10 min"],
-  ]) },
-  { day: 10, date: "2026-08-25", shortDate: "Tue · 25 Aug", week: 2, title: "Chemistry preparation 01", focus: "Reactions must become a map.", target: "Cover named reactions, mechanisms and UT revision systematically.", mode: "CBSE FIRST", schoolPaper: "Preparatory holiday", tasks: tasks(10, [
-    ["CBSE", "Chemistry: Aldehydes/Ketones — nucleophilic addition, named reactions, tests and conversions", "3 hr"],
-    ["CBSE", "Chemistry: Carboxylic acids, acidity order, derivatives and complete UT 1–3 formula/reaction recap", "2 hr"],
-    ["CBSE", "Practical work: functional-group tests, reagent, observation and inference table", "75 min"],
-    ["GK", "NDA Chemistry overlap: 15 acid-base/redox/material facts", "15 min"],
-  ]) },
-  { day: 11, date: "2026-08-26", shortDate: "Wed · 26 Aug", week: 2, title: "Chemistry preparation 02", focus: "Convert reaction knowledge into answers.", target: "Write one organic practice set and repair every missed conversion.", mode: "CBSE FIRST", schoolPaper: "Preparatory holiday", checkpoint: "Organic conversion test + functional-group practical recall", tasks: tasks(11, [
-    ["CBSE", "Chemistry: 90-minute organic mock — aldehydes, ketones, acids, conversions and reasoning", "2 hr"],
-    ["CBSE", "Review every wrong reaction: reagent, condition, product and reason; rebuild reaction map", "90 min"],
-    ["CBSE", "Practical final pass: functional-group tests and precautions", "45 min"],
-    ["English", "NDA maintenance: 15 timed sentence-correction questions", "15 min"],
-  ]) },
-  { day: 12, date: "2026-08-27", shortDate: "Thu · 27 Aug", week: 2, title: "Chemistry exam → NDA reset", focus: "Close the school window calmly.", target: "Recover well and make an easy re-entry plan for NDA.", mode: "DUAL TRACK", schoolPaper: "CBSE Chemistry examination", tasks: tasks(12, [
-    ["CBSE", "Chemistry exam: begin with familiar conversions and keep equations balanced", "Exam"],
-    ["Mathematics", "NDA reset: formula scan for Algebra, Calculus and Probability; no timed test", "35 min"],
-    ["English", "NDA reset: 20 words/idioms from the error book", "15 min"],
-    ["Current Affairs", "Update the current-affairs notebook with the school-exam-week gaps", "15 min"],
-  ]) },
-  { day: 13, date: "2026-08-28", shortDate: "Fri · 28 Aug", week: 2, title: "NDA re-entry", focus: "Restart with the scoring core.", target: "Restore test rhythm without exhausting yourself after exams.", mode: "NDA FIRST", schoolPaper: "Preparatory holiday / recovery day", checkpoint: "60Q Mathematics diagnostic refresh", tasks: tasks(13, [
-    ["Mathematics", "60-question mixed Algebra & Calculus diagnostic; classify errors by formula, concept or speed", "90 min"],
-    ["English", "Grammar: articles, agreement, tenses and prepositions", "30 Q"],
-    ["GK", "Physics and Chemistry priority recap from your school revision", "40 Q"],
-    ["Current Affairs", "Make a two-week current-affairs catch-up list", "25 min"],
-  ]) },
-  { day: 14, date: "2026-08-29", shortDate: "Sat · 29 Aug", week: 2, title: "School buffer + GAT base", focus: "Use the calendar slot intelligently.", target: "Protect Music/C.S. if confirmed; otherwise build GAT breadth.", mode: "DUAL TRACK", schoolPaper: "Music shown on school calendar — confirm final room/time", tasks: tasks(14, [
-    ["CBSE", "If Music exam is confirmed: final recall and paper attempt. If not: use this slot for C.S. / school backlog", "School buffer"],
-    ["GK", "Geography: climate, winds, monsoon, landforms and India map associations", "40 Q"],
-    ["English", "Vocabulary and idioms: spaced review from the full school-exam fortnight", "30 Q"],
-    ["Mathematics", "Matrices and determinants: property-only speed set", "20 Q"],
-  ]) },
-  { day: 15, date: "2026-08-30", shortDate: "Sun · 30 Aug", week: 3, title: "GAT Mock 01", focus: "Return to real NDA timing.", target: "Separate English errors from GK knowledge gaps.", mode: "NDA FIRST", checkpoint: "Full GAT Mock 01 · 150Q in 150 min", tasks: tasks(15, [
-    ["Mock", "Full GAT Mock 01 under strict 150-minute timing", "150 Q"],
-    ["English", "Debrief English: grammar rule, vocabulary gap or option-selection error", "45 min"],
-    ["GK", "Debrief GK: fact gap, concept gap or poor elimination", "45 min"],
-    ["Mathematics", "Light recovery: 15 Probability/Statistics questions", "20 min"],
-  ]) },
-  { day: 16, date: "2026-08-31", shortDate: "Mon · 31 Aug", week: 3, title: "Major Test-2 buffer", focus: "School commitment first; preserve a short NDA loop.", target: "Keep momentum even if Major Test-2 consumes the day.", mode: "DUAL TRACK", schoolPaper: "Major Test-2 shown on school calendar", tasks: tasks(16, [
-    ["CBSE", "Major Test-2 / school work: follow the confirmed school instructions and capture post-test mistakes", "School slot"],
-    ["Mathematics", "NDA Algebra repair: AP/GP, complex numbers, P&C and binomial from the 28 Aug diagnostic", "30 Q"],
-    ["English", "10-minute vocabulary recall + 10 grammar corrections", "20 Q"],
-    ["Current Affairs", "Review two static-linked current events", "15 min"],
-  ]) },
-  { day: 17, date: "2026-09-01", shortDate: "Tue · 1 Sep", week: 3, title: "Algebra speed", focus: "Make the biggest Maths block reliable.", target: "Solve the high-frequency Algebra models at controlled speed.", mode: "NDA FIRST", schoolPaper: "Regular classes resume", tasks: tasks(17, [
-    ["Mathematics", "Sets/functions, AP/GP/HP, complex numbers, P&C/binomial and quadratic roots — mixed timed set", "45 Q"],
-    ["English", "Sentence completion and error spotting", "25 Q"],
-    ["GK", "Physics: mechanics, electricity, magnetism and optics priority concepts", "35 Q"],
-    ["Current Affairs", "15-minute rolling revision", "15 min"],
-  ]) },
-  { day: 18, date: "2026-09-02", shortDate: "Wed · 2 Sep", week: 3, title: "Calculus scoring block", focus: "Limits to integration without hesitation.", target: "Secure standard forms and one-step applications.", mode: "NDA FIRST", schoolPaper: "Regular classes", tasks: tasks(18, [
-    ["Mathematics", "Limits, continuity, derivatives, extrema, standard integration and differential equations", "45 Q"],
-    ["English", "Idioms, synonyms and antonyms in context", "30 Q"],
-    ["GK", "Chemistry: acid-base-redox, periodicity, compounds and everyday chemistry", "35 Q"],
-    ["Current Affairs", "Add five updated facts with a static link", "15 min"],
-  ]) },
-  { day: 19, date: "2026-09-03", shortDate: "Thu · 3 Sep", week: 3, title: "Space & coordinate", focus: "Diagram first, calculate second.", target: "Build confidence in coordinate, vector and 3-D questions.", mode: "NDA FIRST", schoolPaper: "Regular classes", tasks: tasks(19, [
-    ["Mathematics", "Straight lines, circles, vectors, lines/planes and spheres — relation and condition models", "40 Q"],
-    ["English", "Ordering and one reading-comprehension set", "25 Q"],
-    ["GK", "Geography: climate, physical geography and map-linked India", "35 Q"],
-    ["Current Affairs", "Review the last 20 current-affairs cards", "15 min"],
-  ]) },
-  { day: 20, date: "2026-09-04", shortDate: "Fri · 4 Sep", week: 3, title: "Probability + Biology", focus: "Translate the condition, then choose.", target: "Make probability and Biology a stable scoring pair.", mode: "NDA FIRST", schoolPaper: "Regular classes", tasks: tasks(20, [
-    ["Mathematics", "Conditional probability, Bayes, dice/cards/urns, binomial probability, mean and deviation", "40 Q"],
-    ["English", "Cloze and grammar repair", "25 Q"],
-    ["GK", "Biology: cell/genetics, physiology, immunity, diseases, ecology and biotechnology", "40 Q"],
-    ["Current Affairs", "Defence, awards and space recap", "20 min"],
-  ]) },
-  { day: 21, date: "2026-09-05", shortDate: "Sat · 5 Sep", week: 3, title: "Maths Mock 01", focus: "Simulate, classify, repair.", target: "Record score, attempts, wrongs and guesses honestly.", mode: "NDA FIRST", checkpoint: "Full Mathematics Mock · 120Q in 150 min", tasks: tasks(21, [
-    ["Mock", "Full Mathematics Mock 01 under real timing", "120 Q"],
-    ["Mathematics", "Debrief every wrong/guess: concept, formula, calculation or time-management", "90 min"],
-    ["GK", "History & Polity priority recap", "30 Q"],
-    ["English", "Short error-log repair", "15 min"],
-  ]) },
-  { day: 22, date: "2026-09-06", shortDate: "Sun · 6 Sep", week: 4, title: "GAT Mock 02", focus: "Breadth with calm selection.", target: "Make English plus two GK subjects dependable.", mode: "NDA FIRST", checkpoint: "Full GAT Mock · 150Q in 150 min", tasks: tasks(22, [
-    ["Mock", "Full GAT Mock 02 — complete under the 150-minute limit", "150 Q"],
-    ["English", "Review all language errors by type", "45 min"],
-    ["GK", "Review all GK errors by source and subject", "45 min"],
-    ["Mathematics", "Statistics/Probability confidence set", "20 Q"],
-  ]) },
-  { day: 23, date: "2026-09-07", shortDate: "Mon · 7 Sep", week: 4, title: "PYQ repair loop", focus: "Let the wrong answers choose the work.", target: "Finish two attemptable PYQ blocks inside the Practice Centre.", mode: "NDA FIRST", schoolPaper: "Regular classes", tasks: tasks(23, [
-    ["Mathematics", "PYQ attempt: Algebra/Calculus priority block; redo only wrong models after review", "50 Q"],
-    ["English", "PYQ practice: grammar and vocabulary block", "35 Q"],
-    ["GK", "PYQ practice: Physics/Geography/Chemistry core", "45 Q"],
-    ["Current Affairs", "Write the top 10 remaining factual gaps", "20 min"],
-  ]) },
-  { day: 24, date: "2026-09-08", shortDate: "Tue · 8 Sep", week: 4, title: "Priority syllabus circuit", focus: "P1 first. P2 second. Nothing random.", target: "Touch one standard model from every top-frequency family.", mode: "NDA FIRST", schoolPaper: "Regular classes", tasks: tasks(24, [
-    ["Mathematics", "P1 circuit: Algebra, Calculus, Vector/3-D and Probability/Statistics formula-model loop", "45 Q"],
-    ["English", "P1 circuit: grammar, idioms, synonyms/antonyms", "35 Q"],
-    ["GK", "P1 circuit: Physics, Geography, Chemistry and Current Affairs/Defence", "50 Q"],
-    ["Current Affairs", "One-page rolling revision", "20 min"],
-  ]) },
-  { day: 25, date: "2026-09-09", shortDate: "Wed · 9 Sep", week: 4, title: "Practice Centre day", focus: "Timed practice, not passive revision.", target: "Complete your daily drill and one focused mock with a clean debrief.", mode: "NDA FIRST", schoolPaper: "Regular classes", checkpoint: "Daily drill + one priority mini-mock", tasks: tasks(25, [
-    ["Mock", "Practice Centre daily drill — submit under time and read every explanation", "25 Q"],
-    ["Mathematics", "Priority Maths mini-mock: choose your weakest P1/P2 chapter", "40 Q"],
-    ["English", "Timed English mixed set", "30 Q"],
-    ["GK", "Timed GAT core set", "40 Q"],
-  ]) },
-  { day: 26, date: "2026-09-10", shortDate: "Thu · 10 Sep", week: 4, title: "Model rehearsal", focus: "One model from every major family.", target: "Stop adding new theory after today.", mode: "NDA FIRST", schoolPaper: "Regular classes", tasks: tasks(26, [
-    ["Mathematics", "Formula/model circuit: progression, complex, determinant, trig, limit, vector, probability and stats", "35 Q"],
-    ["English", "Vocabulary and idiom error-list revision", "30 min"],
-    ["GK", "Current Affairs, Defence, Polity and science fact-sheet revision", "50 Q"],
-    ["Current Affairs", "Final notebook compression into one page", "20 min"],
-  ]) },
-  { day: 27, date: "2026-09-11", shortDate: "Fri · 11 Sep", week: 4, title: "Conditioning run", focus: "Short, sharp and measured.", target: "No repeated careless-error pattern.", mode: "NDA FIRST", schoolPaper: "Regular classes", checkpoint: "60Q Maths + 25Q English + 50Q GK simulation", tasks: tasks(27, [
-    ["Mock", "Half-length Mathematics simulation", "60 Q · 75 min"],
-    ["English", "Timed English mixed set", "25 Q"],
-    ["GK", "Timed GK mixed set", "50 Q · 60 min"],
-    ["Current Affairs", "Analyse immediately; revise mistakes only", "45 min"],
-  ]) },
-  { day: 28, date: "2026-09-12", shortDate: "Sat · 12 Sep", week: 4, title: "Pre-exam reset", focus: "Arrive rested and accurate.", target: "Maximum three hours. Sleep early.", mode: "NDA FIRST", checkpoint: "Light revision only · no new theory", tasks: tasks(28, [
-    ["Mathematics", "Formula sheet, standard results, common traps and 15 confidence questions", "45 min"],
-    ["English", "Vocabulary, idioms and grammar rules only", "35 min"],
-    ["GK", "Current affairs, defence, Polity and science fact sheet", "45 min"],
-    ["Current Affairs", "Pack documents and permitted stationery; sleep early", "20 min"],
-  ]) },
+  { day: 1, date: "2026-08-16", shortDate: "Sun · 16 Aug", week: 1, title: "English command prep", focus: "Holiday capacity goes to tomorrow’s paper; NDA stays on a short maintenance loop.", target: "Holiday plan: 8 h 45 min. Finish English formats and sleep before 22:30.", mode: "CBSE FIRST", timeBudget: "Holiday · 8 h 45", schoolPaper: "English half-yearly tomorrow", checkpoint: "English final rehearsal · only 45 min NDA continuity", tasks: tasks(1, [["CBSE", "07:00–09:15 | Flamingo: themes, characters and evidence from the prescribed texts", "2 h 15"], ["CBSE", "09:45–12:00 | Article + invitation/letter + unseen passage under time", "2 h 15"], ["CBSE", "14:00–16:15 | Vistas, poetry, quotations and 20-mark answer structure", "2 h 15"], ["CBSE", "17:00–18:15 | 75-minute English mini-paper; correct grammar and word limits", "1 h 15"], ["English", "20:00–20:45 | NDA error-log vocabulary: 15 words + 10 idioms; pack and wind down", "45 min"]]) },
+  { day: 2, date: "2026-08-17", shortDate: "Mon · 17 Aug", week: 1, title: "English exam → Maths/Bio bridge", focus: "Write cleanly, recover briefly, then build the next two-paper bridge.", target: "Exam day: complete only a calm 3 h 35 min bridge after rest.", mode: "CBSE FIRST", timeBudget: "Exam day · 3 h 35", schoolPaper: "CBSE English examination", tasks: tasks(2, [["CBSE", "School exam | English: scan for 10 minutes; reserve the final 8 minutes for presentation checks", "Paper"], ["CBSE", "16:30–18:00 | Indefinite integration: standard forms, substitution and by-parts recall", "1 h 30"], ["CBSE", "18:30–19:45 | Biology Organisms & Populations: definitions, graphs and NCERT keywords", "1 h 15"], ["CBSE", "20:15–20:50 | Maths/Bio formula-and-keyword retrieval without notes", "35 min"], ["Current Affairs", "21:00–21:15 | Five static-linked current-affairs cards; sleep early", "15 min"]]) },
+  { day: 3, date: "2026-08-18", shortDate: "Tue · 18 Aug", week: 1, title: "Maths/Bio preparation 01", focus: "Use the preparatory holiday for a full first pass of calculus and Biology.", target: "Holiday plan: 9 h. Complete integration models, two Biology chapters and active recall.", mode: "CBSE FIRST", timeBudget: "Holiday · 9 h 00", schoolPaper: "Preparatory holiday", tasks: tasks(3, [["CBSE", "07:00–09:15 | Indefinite integration: substitution, parts, partial fractions and standard results", "2 h 15"], ["CBSE", "09:45–12:00 | 25 mixed integration questions; tag every wrong step", "2 h 15"], ["CBSE", "14:00–16:15 | Organisms & Populations + Microbes: diagrams, examples and tables", "2 h 15"], ["CBSE", "17:00–18:15 | Biology recall sheets and 20 NCERT-style short answers", "1 h 15"], ["Mathematics", "20:00–21:00 | NDA overlap: 10 standard integration models; error log only", "1 h 00"]]) },
+  { day: 4, date: "2026-08-19", shortDate: "Wed · 19 Aug", week: 1, title: "Maths/Bio preparation 02", focus: "Practise the papers you will write instead of rereading notes.", target: "Holiday plan: 8 h 45 min. One timed Maths set, Biotechnology recall and final compact sheets.", mode: "CBSE FIRST", timeBudget: "Holiday · 8 h 45", schoolPaper: "Preparatory holiday", checkpoint: "CBSE Maths mini-paper + Biology NCERT recall", tasks: tasks(4, [["CBSE", "07:00–09:15 | Definite integrals and UT 1–3 revision", "2 h 15"], ["CBSE", "09:45–12:00 | 90-minute Maths mixed set; correct every solution", "2 h 15"], ["CBSE", "14:00–16:15 | Biotechnology: enzymes, cloning vectors, flowcharts and terms", "2 h 15"], ["CBSE", "17:00–18:30 | Two-page Maths formula sheet + Biology mistake sheet", "1 h 30"], ["English", "20:00–20:30 | NDA maintenance: 15 vocabulary/idiom recalls", "30 min"]]) },
+  { day: 5, date: "2026-08-20", shortDate: "Thu · 20 Aug", week: 1, title: "Maths/Bio exam day", focus: "Execute the papers; save the evening for the next school subject.", target: "Exam day: only 2 h 40 min Physics preview, then recovery.", mode: "CBSE FIRST", timeBudget: "Exam day · 2 h 40", schoolPaper: "CBSE Mathematics & Biology examinations", tasks: tasks(5, [["CBSE", "School exams | Attempt familiar questions first; label long calculations and return later", "Papers"], ["CBSE", "16:45–17:30 | Music/C.S. contingency: organise confirmed material only", "45 min"], ["CBSE", "18:00–19:15 | Ray Optics: sign conventions, formulae and image cases", "1 h 15"], ["CBSE", "20:00–20:30 | Ray-diagram retrieval from memory", "30 min"], ["Current Affairs", "20:40–20:50 | Five-minute error-log glance and sleep routine", "10 min"]]) },
+  { day: 6, date: "2026-08-21", shortDate: "Fri · 21 Aug", week: 1, title: "Music paper & Physics bridge", focus: "Keep the school paper central, then open the Physics runway immediately.", target: "Exam day: complete 3 h 40 min of Physics only after the school slot.", mode: "CBSE FIRST", timeBudget: "Exam day · 3 h 40", schoolPaper: "Music half-yearly per detailed notice · C.S. calendar contingency", tasks: tasks(6, [["CBSE", "School paper | Music recall: rag notes, taal-rupak, composers and answer structure; swap for confirmed C.S.", "Paper"], ["CBSE", "16:30–18:00 | Ray Optics: mirrors, lenses, sign convention and numerical setup", "1 h 30"], ["CBSE", "18:30–19:45 | Optical Instruments: microscope/telescope formulae and diagrams", "1 h 15"], ["CBSE", "20:15–20:50 | Physics practical procedures and precautions", "35 min"], ["GK", "21:00–21:20 | NDA optics concepts only; no new notes", "20 min"]]) },
+  { day: 7, date: "2026-08-22", shortDate: "Sat · 22 Aug", week: 1, title: "Physics preparation 01", focus: "Build concepts, diagrams and practical confidence before test pressure.", target: "Holiday plan: 9 h. Complete Optics core, practical procedures and Wave Optics foundations.", mode: "CBSE FIRST", timeBudget: "Holiday · 9 h 00", schoolPaper: "Preparatory holiday", tasks: tasks(7, [["CBSE", "07:00–09:15 | Ray Optics: formula sheet, diagrams and 12 core numericals", "2 h 15"], ["CBSE", "09:45–12:00 | Optical Instruments: derivations and 15 mixed questions", "2 h 15"], ["CBSE", "14:00–16:15 | Practicals: apparatus, formula, graph, precautions and error sources", "2 h 15"], ["CBSE", "17:00–18:15 | Wave Optics: YDSE, diffraction, interference and derivation frames", "1 h 15"], ["English", "20:00–20:45 | NDA grammar maintenance: 20 corrections", "45 min"]]) },
+  { day: 8, date: "2026-08-23", shortDate: "Sun · 23 Aug", week: 2, title: "Physics rehearsal", focus: "Write, check, correct — this is a rehearsal, not passive revision.", target: "Holiday plan: 8 h 30 min including a Physics simulation, practical viva and error repair.", mode: "CBSE FIRST", timeBudget: "Holiday · 8 h 30", schoolPaper: "Sunday rehearsal day", checkpoint: "Physics 90-minute paper simulation + optics practical viva", tasks: tasks(8, [["CBSE", "07:00–09:15 | Physics 90-minute mixed paper; mark every derivation gap", "2 h 15"], ["CBSE", "09:45–12:00 | Correct the paper; rebuild weak formulae and three faulty derivations", "2 h 15"], ["CBSE", "14:00–16:15 | Optics practical viva: apparatus, graphs and precautions", "2 h 15"], ["CBSE", "17:00–18:00 | Final ray-diagram + formula recall without notes", "1 h 00"], ["GK", "20:00–20:45 | NDA optics/electricity PYQs if school revision is complete", "45 min"]]) },
+  { day: 9, date: "2026-08-24", shortDate: "Mon · 24 Aug", week: 2, title: "Physics exam → Chemistry launch", focus: "Finish the paper cleanly; use the evening to open organic chemistry calmly.", target: "Exam day: a focused 3 h 15 min Chemistry bridge is enough.", mode: "CBSE FIRST", timeBudget: "Exam day · 3 h 15", schoolPaper: "CBSE Physics examination", tasks: tasks(9, [["CBSE", "School exam | Label diagrams, track units and reserve final minutes for numerical checks", "Paper"], ["CBSE", "16:30–18:00 | Aldehydes/Ketones/Acids: groups, nomenclature and core reactions", "1 h 30"], ["CBSE", "18:30–19:45 | Carbonyl named reactions and conversions; begin reaction map", "1 h 15"], ["CBSE", "20:15–20:45 | Practical: functional-group tests, observations and inferences", "30 min"]]) },
+  { day: 10, date: "2026-08-25", shortDate: "Tue · 25 Aug", week: 2, title: "Chemistry preparation 01", focus: "Turn reactions into a map, then turn the map into answers.", target: "Holiday plan: 9 h. Cover carbonyls, acids, conversions and practical evidence.", mode: "CBSE FIRST", timeBudget: "Holiday · 9 h 00", schoolPaper: "Preparatory holiday", tasks: tasks(10, [["CBSE", "07:00–09:15 | Aldehydes/Ketones: addition, named reactions, tests and conditions", "2 h 15"], ["CBSE", "09:45–12:00 | Carboxylic acids: acidity, derivatives, conversions and UT recap", "2 h 15"], ["CBSE", "14:00–16:15 | 30 organic conversion/reasoning questions; correct from reaction map", "2 h 15"], ["CBSE", "17:00–18:15 | Practical evidence table: reagent, observation, inference and precautions", "1 h 15"], ["GK", "20:00–21:00 | NDA Chemistry: acid-base/redox/material facts", "1 h 00"]]) },
+  { day: 11, date: "2026-08-26", shortDate: "Wed · 26 Aug", week: 2, title: "Chemistry preparation 02", focus: "Convert reaction memory into marks under time.", target: "Holiday plan: 8 h 30 min. Attempt, analyse, rebuild and compress.", mode: "CBSE FIRST", timeBudget: "Holiday · 8 h 30", schoolPaper: "Preparatory holiday", checkpoint: "Organic conversion test + functional-group practical recall", tasks: tasks(11, [["CBSE", "07:00–09:15 | 90-minute organic mock: conversions, reasoning and conditions", "2 h 15"], ["CBSE", "09:45–12:00 | Review wrong reactions: reagent, condition, product and reason", "2 h 15"], ["CBSE", "14:00–16:30 | UT 1–3 rapid revision: named reactions and answer wording", "2 h 30"], ["CBSE", "17:00–18:00 | Practical final pass: tests and precautions", "1 h 00"], ["English", "20:00–20:30 | NDA maintenance: 15 sentence corrections", "30 min"]]) },
+  { day: 12, date: "2026-08-27", shortDate: "Thu · 27 Aug", week: 2, title: "Chemistry exam → NDA reset", focus: "Close the school window calmly, then restart NDA with a light diagnostic ritual.", target: "Exam day: protect recovery. Do only 1 h 25 min of NDA reset.", mode: "DUAL TRACK", timeBudget: "Exam day · 1 h 25", schoolPaper: "CBSE Chemistry examination", tasks: tasks(12, [["CBSE", "School exam | Begin with familiar conversions; balance equations and check conditions", "Paper"], ["Mathematics", "18:00–18:35 | NDA formula scan: Algebra, Calculus and Probability", "35 min"], ["English", "19:00–19:20 | Twenty words/idioms from the error book", "20 min"], ["Current Affairs", "20:00–20:30 | Fill school-exam-week current-affairs gaps", "30 min"]]) },
+  { day: 13, date: "2026-08-28", shortDate: "Fri · 28 Aug", week: 2, title: "NDA re-entry", focus: "A full holiday reset: diagnose, classify and rebuild test rhythm.", target: "Holiday plan: 8 h 45 min. End with a labelled error map, not a raw score.", mode: "NDA FIRST", timeBudget: "Holiday · 8 h 45", schoolPaper: "Preparatory holiday / recovery day", checkpoint: "60Q Mathematics diagnostic refresh", tasks: tasks(13, [["Mathematics", "07:00–09:15 | 60-question Algebra/Calculus diagnostic", "2 h 15"], ["Mathematics", "09:45–11:30 | Classify every miss: formula, concept, calculation, time or risky attempt", "1 h 45"], ["GK", "14:00–16:15 | Physics/Chemistry priority recap from fresh CBSE work", "2 h 15"], ["English", "17:00–18:15 | Articles, agreement, tenses and prepositions: 30 timed questions", "1 h 15"], ["Current Affairs", "20:00–21:15 | Two-week catch-up list; no long notes", "1 h 15"]]) },
+  { day: 14, date: "2026-08-29", shortDate: "Sat · 29 Aug", week: 2, title: "GAT breadth + school buffer", focus: "Protect any confirmed school commitment, otherwise use the full day for GAT coverage.", target: "Holiday plan: 8 h 30 min if the school slot is free; reduce NDA only for confirmed school work.", mode: "DUAL TRACK", timeBudget: "Holiday · 8 h 30", schoolPaper: "Music / C.S. calendar contingency — confirm final time", tasks: tasks(14, [["CBSE", "07:00–09:15 | Confirmed school paper recall, or clear only urgent school backlog", "2 h 15"], ["GK", "09:45–12:00 | Geography: climate, monsoon, landforms and India maps", "2 h 15"], ["GK", "14:00–16:15 | Modern India, Constitution and constitutional bodies", "2 h 15"], ["Mathematics", "17:00–18:00 | Matrices and determinants: property speed set", "1 h 00"], ["English", "20:00–20:45 | Vocabulary and idioms spaced review", "45 min"]]) },
+  { day: 15, date: "2026-08-30", shortDate: "Sun · 30 Aug", week: 3, title: "GAT Mock 01", focus: "Re-enter real timing, then make the post-mock review do the teaching.", target: "Holiday plan: 8 h 45 min. Full mock, two debriefs and a Maths confidence close.", mode: "NDA FIRST", timeBudget: "Holiday · 8 h 45", checkpoint: "Full GAT Mock 01 · 150Q in 150 min", tasks: tasks(15, [["Mock", "07:00–09:30 | Full GAT Mock 01 under strict timing", "2 h 30"], ["English", "10:00–12:00 | Debrief language errors: rule, vocabulary or option selection", "2 h 00"], ["GK", "14:00–16:00 | Debrief GK: fact, concept or elimination; make 20 cards", "2 h 00"], ["Mathematics", "17:00–18:15 | Probability/Statistics confidence set: 20 questions", "1 h 15"], ["Current Affairs", "20:00–21:00 | Revise cards created during review", "1 h 00"]]) },
+  { day: 16, date: "2026-08-31", shortDate: "Mon · 31 Aug", week: 3, title: "Major Test-2 buffer", focus: "School commitment first; a short, structured NDA loop keeps momentum intact.", target: "School-day plan: 4 h 30 min around Major Test-2 or regular class workload.", mode: "DUAL TRACK", timeBudget: "School day · 4 h 30", schoolPaper: "Major Test-2 shown on school calendar", tasks: tasks(16, [["CBSE", "School slot | Major Test-2/teacher-directed work; capture three mistakes", "School"], ["Mathematics", "05:50–07:05 | AP/GP, complex, P&C and binomial repair", "1 h 15"], ["Mathematics", "16:30–18:00 | 30-question Algebra timed set; correct immediately", "1 h 30"], ["English", "18:30–19:45 | Vocabulary recall + 20 grammar corrections", "1 h 15"], ["Current Affairs", "20:30–21:00 | Two static-linked current events and error-log close", "30 min"]]) },
+  { day: 17, date: "2026-09-01", shortDate: "Tue · 1 Sep", week: 3, title: "Algebra speed", focus: "Make the largest Mathematics block repeatable at school-day pace.", target: "School-day plan: 4 h 45 min. P1 Algebra before classes, then English/GK precision.", mode: "NDA FIRST", timeBudget: "School day · 4 h 45", schoolPaper: "Regular classes resume", tasks: tasks(17, [["Mathematics", "05:50–07:05 | Sets/functions, quadratic roots and AP/GP/HP formula models", "1 h 15"], ["Mathematics", "16:30–18:00 | Complex, P&C/binomial and 45-question Algebra timed set", "1 h 30"], ["English", "18:30–19:45 | Sentence completion and error spotting: 25 questions", "1 h 15"], ["GK", "20:30–21:15 | Physics: mechanics, electricity, magnetism and optics", "45 min"]]) },
+  { day: 18, date: "2026-09-02", shortDate: "Wed · 2 Sep", week: 3, title: "Calculus scoring block", focus: "Secure standard forms and one-step applications without hesitation.", target: "School-day plan: 4 h 45 min. Calculus gets the longest evening block.", mode: "NDA FIRST", timeBudget: "School day · 4 h 45", schoolPaper: "Regular classes", tasks: tasks(18, [["Mathematics", "05:50–07:05 | Limits, continuity, derivatives and extrema models", "1 h 15"], ["Mathematics", "16:30–18:00 | Integration and differential equations: 45 timed questions", "1 h 30"], ["English", "18:30–19:45 | Idioms, synonyms and antonyms in context", "1 h 15"], ["GK", "20:30–21:15 | Chemistry: acid-base, redox, periodicity and compounds", "45 min"]]) },
+  { day: 19, date: "2026-09-03", shortDate: "Thu · 3 Sep", week: 3, title: "Space & coordinate", focus: "Diagram first, calculate second; use clean school-night pacing.", target: "School-day plan: 4 h 45 min. Build coordinate/vector confidence and keep Geography map-linked.", mode: "NDA FIRST", timeBudget: "School day · 4 h 45", schoolPaper: "Regular classes", tasks: tasks(19, [["Mathematics", "05:50–07:05 | Straight lines and circles: relation, condition and distance", "1 h 15"], ["Mathematics", "16:30–18:00 | Vectors, lines/planes and spheres: 40 mixed questions", "1 h 30"], ["English", "18:30–19:45 | Ordering + one reading-comprehension set", "1 h 15"], ["GK", "20:30–21:15 | Geography: physical geography, climate and map-linked India", "45 min"]]) },
+  { day: 20, date: "2026-09-04", shortDate: "Fri · 4 Sep", week: 3, title: "Probability + Biology", focus: "Translate the condition, then choose; pair a Maths weak spot with GAT Biology.", target: "School-day plan: 4 h 45 min. Finish with a low-load GAT Biology pass.", mode: "NDA FIRST", timeBudget: "School day · 4 h 45", schoolPaper: "Regular classes", tasks: tasks(20, [["Mathematics", "05:50–07:05 | Conditional probability, Bayes and binomial formula loop", "1 h 15"], ["Mathematics", "16:30–18:00 | Dice/cards/urns, mean and deviation: 40 timed questions", "1 h 30"], ["English", "18:30–19:45 | Cloze and grammar repair: 25 questions", "1 h 15"], ["GK", "20:30–21:15 | Biology: genetics, physiology, immunity, ecology and biotech", "45 min"]]) },
+  { day: 21, date: "2026-09-05", shortDate: "Sat · 5 Sep", week: 3, title: "Maths Mock 01", focus: "Simulate, classify, repair. The review is as important as the score.", target: "Holiday plan: 8 h 30 min. Full Maths mock, deep repair and concise History/Polity coverage.", mode: "NDA FIRST", timeBudget: "Holiday · 8 h 30", checkpoint: "Full Mathematics Mock · 120Q in 150 min", tasks: tasks(21, [["Mock", "07:00–09:30 | Full Mathematics Mock 01 under 150-minute timing", "2 h 30"], ["Mathematics", "10:00–12:15 | Debrief wrong/guess: concept, formula, calculation or time", "2 h 15"], ["GK", "14:00–16:15 | Modern India, Constitution, bodies and rights recap", "2 h 15"], ["Mathematics", "17:00–18:00 | Redo ten instructive mock errors without solutions", "1 h 00"], ["English", "20:00–20:30 | Short error-log repair and early close", "30 min"]]) },
+  { day: 22, date: "2026-09-06", shortDate: "Sun · 6 Sep", week: 4, title: "GAT Mock 02", focus: "Breadth with calm selection: protect English and the strongest GK subjects.", target: "Holiday plan: 8 h 30 min. Full GAT mock and subject-level debrief.", mode: "NDA FIRST", timeBudget: "Holiday · 8 h 30", checkpoint: "Full GAT Mock 02 · 150Q in 150 min", tasks: tasks(22, [["Mock", "07:00–09:30 | Full GAT Mock 02 under strict timing", "2 h 30"], ["English", "10:00–12:00 | Review language errors by rule, word family or rushed choice", "2 h 00"], ["GK", "14:00–16:00 | Review GK by subject; write only facts that caused misses", "2 h 00"], ["Mathematics", "17:00–18:15 | Statistics/Probability confidence set: 20 questions", "1 h 15"], ["Current Affairs", "20:00–20:45 | Defence, awards, space and current-affairs flashcards", "45 min"]]) },
+  { day: 23, date: "2026-09-07", shortDate: "Mon · 7 Sep", week: 4, title: "PYQ repair loop", focus: "Let wrong answers choose the work. Use the Practice Centre under honest timings.", target: "School-day plan: 4 h 45 min. PYQ blocks only; no passive chapter rereading.", mode: "NDA FIRST", timeBudget: "School day · 4 h 45", schoolPaper: "Regular classes", tasks: tasks(23, [["Mathematics", "05:50–07:05 | PYQ Algebra/Calculus models: redo previously wrong patterns", "1 h 15"], ["Mathematics", "16:30–18:00 | Practice Centre Maths PYQ block: 50 questions", "1 h 30"], ["English", "18:30–19:45 | PYQ grammar/vocabulary: 35 questions + corrections", "1 h 15"], ["GK", "20:30–21:15 | PYQ Physics/Geography/Chemistry: 25 questions + gaps", "45 min"]]) },
+  { day: 24, date: "2026-09-08", shortDate: "Tue · 8 Sep", week: 4, title: "Priority syllabus circuit", focus: "P1 first, P2 second, nothing random.", target: "School-day plan: 4 h 45 min. Touch one reliable model from every top-frequency family.", mode: "NDA FIRST", timeBudget: "School day · 4 h 45", schoolPaper: "Regular classes", tasks: tasks(24, [["Mathematics", "05:50–07:05 | P1 formula circuit: Algebra, Calculus, Vector/3-D, Probability/Stats", "1 h 15"], ["Mathematics", "16:30–18:00 | One model from each P1 Maths family: 35 questions", "1 h 30"], ["English", "18:30–19:45 | P1 grammar, idioms and synonyms/antonyms circuit", "1 h 15"], ["GK", "20:30–21:15 | P1 Physics, Geography, Chemistry and Defence/current affairs", "45 min"]]) },
+  { day: 25, date: "2026-09-09", shortDate: "Wed · 9 Sep", week: 4, title: "Practice Centre day", focus: "Timed practice, not passive revision; read every explanation that corrects a mistake.", target: "School-day plan: 4 h 45 min. Daily drill then a targeted Maths mini-mock.", mode: "NDA FIRST", timeBudget: "School day · 4 h 45", schoolPaper: "Regular classes", checkpoint: "Daily drill + one priority mini-mock", tasks: tasks(25, [["Mock", "05:50–07:05 | Practice Centre daily drill; submit on time and mark gaps", "1 h 15"], ["Mathematics", "16:30–18:00 | Priority Maths mini-mock: weakest P1/P2 chapter", "1 h 30"], ["English", "18:30–19:45 | Timed English mixed set: 30 questions", "1 h 15"], ["GK", "20:30–21:15 | Timed GAT core: 40 questions; repeat misses only", "45 min"]]) },
+  { day: 26, date: "2026-09-10", shortDate: "Thu · 10 Sep", week: 4, title: "Model rehearsal", focus: "One model from every major family; no new theory after today.", target: "School-day plan: 4 h 30 min. Compress the final notebook and protect sleep.", mode: "NDA FIRST", timeBudget: "School day · 4 h 30", schoolPaper: "Regular classes", tasks: tasks(26, [["Mathematics", "05:50–07:00 | Progressions, complex, determinant, trigonometry and limits", "1 h 10"], ["Mathematics", "16:30–17:50 | Vectors, probability and statistics: 35 confidence questions", "1 h 20"], ["English", "18:20–19:30 | Vocabulary/idiom error-list + 15 grammar repairs", "1 h 10"], ["GK", "20:00–20:50 | Current affairs, Defence, Polity and science fact-sheet", "50 min"]]) },
+  { day: 27, date: "2026-09-11", shortDate: "Fri · 11 Sep", week: 4, title: "Conditioning run", focus: "Short, sharp and measured. Stop careless errors before they reach the exam.", target: "School-day plan: 4 h 30 min. Half-length simulation and no late-night revision.", mode: "NDA FIRST", timeBudget: "School day · 4 h 30", schoolPaper: "Regular classes", checkpoint: "60Q Maths + 25Q English + 50Q GK simulation", tasks: tasks(27, [["Mock", "05:50–07:05 | Half-length Mathematics simulation: 60 questions", "1 h 15"], ["English", "16:30–17:40 | Timed English mixed set: 25 questions", "1 h 10"], ["GK", "18:10–19:20 | Timed GK mixed set: 50 questions", "1 h 10"], ["Current Affairs", "20:00–20:55 | Analyse immediately; revise the mistake set only", "55 min"]]) },
+  { day: 28, date: "2026-09-12", shortDate: "Sat · 12 Sep", week: 4, title: "Pre-exam reset", focus: "Arrive rested and accurate. No new theory, full mock or late night.", target: "Taper plan: maximum 3 h. Pack documents and permitted stationery; sleep early.", mode: "NDA FIRST", timeBudget: "Taper · 3 h 00", checkpoint: "Light revision only · no new theory", tasks: tasks(28, [["Mathematics", "08:00–08:45 | Formula sheet, standard results, common traps and 15 confidence questions", "45 min"], ["English", "10:00–10:35 | Vocabulary, idioms and grammar rules only", "35 min"], ["GK", "16:00–16:45 | Current affairs, Defence, Polity and science fact sheet", "45 min"], ["Current Affairs", "17:15–18:10 | Pack documents, stationery and route essentials; screens off", "55 min"]]) },
 ];
 
-export const subjectDetails: Record<Subject, { color: string; short: string }> = {
-  Mathematics: { color: "orange", short: "MATH" },
-  English: { color: "blue", short: "ENG" },
-  GK: { color: "sage", short: "GK" },
-  "Current Affairs": { color: "sand", short: "CA" },
-  Mock: { color: "ink", short: "MOCK" },
-  CBSE: { color: "school", short: "CBSE" },
-};
+export const subjectDetails: Record<Subject, { color: string; short: string }> = { Mathematics: { color: "orange", short: "MATH" }, English: { color: "blue", short: "ENG" }, GK: { color: "sage", short: "GK" }, "Current Affairs": { color: "sand", short: "CA" }, Mock: { color: "ink", short: "MOCK" }, CBSE: { color: "school", short: "CBSE" } };

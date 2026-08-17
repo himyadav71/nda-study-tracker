@@ -18,6 +18,7 @@ import {
   Filter,
   Flag,
   Flame,
+  FolderOpen,
   Gauge,
   GraduationCap,
   Landmark,
@@ -72,6 +73,7 @@ const navItems = [
   { id: "focus", label: "Priority focus", icon: Target },
   { id: "priority-syllabus", label: "Priority syllabus", icon: BookOpen, href: "/priority-syllabus" },
   { id: "practice", label: "Practice & tests", icon: Trophy, href: "/practice" },
+  { id: "materials", label: "Study library", icon: FolderOpen, href: "/materials" },
 ];
 
 function getPlannedToday() {
@@ -230,7 +232,7 @@ export default function Home() {
           <div className="today-grid">
             <article className="active-brief-card" style={{ backgroundImage: `linear-gradient(135deg, rgba(11, 26, 44, 0.96), rgba(11, 26, 44, 0.68)), url(${ASSETS.topo})` }}>
               <div className="active-card-top"><span className="day-stamp">DAY {String(activeDay.day).padStart(2, "0")}</span><span>{activeDay.shortDate}</span></div>
-              <div className={`day-mode ${activeDay.mode.toLowerCase().replace(" ", "-")}`}>{activeDay.mode}{activeDay.schoolPaper ? <span>· {activeDay.schoolPaper}</span> : null}</div>
+              <div className={`day-mode ${activeDay.mode.toLowerCase().replace(" ", "-")}`}>{activeDay.mode}<span>· {activeDay.timeBudget}</span>{activeDay.schoolPaper ? <span>· {activeDay.schoolPaper}</span> : null}</div>
               <h3>{activeDay.title}</h3>
               <p>{activeDay.focus}</p>
               <div className="active-progress"><span>{activeDone} / {activeDay.tasks.length} logged</span><div><i style={{ width: `${(activeDone / activeDay.tasks.length) * 100}%` }} /></div></div>
@@ -278,7 +280,7 @@ export default function Home() {
                   <button className="day-card-head" onClick={() => chooseDay(day.day)} aria-label={`Open Day ${day.day}`}>
                     <span className="day-number">{String(day.day).padStart(2, "0")}</span>
                     <span className="day-date">{day.shortDate}</span>
-                    <span className="day-title"><strong>{day.title}</strong><em>{day.focus}</em></span>
+                    <span className="day-title"><strong>{day.title}</strong><em>{day.focus} · {day.timeBudget}</em></span>
                     {day.checkpoint ? <span className="mock-tag"><Trophy size={13} /> TEST</span> : <span className="day-count">{done}/{day.tasks.length}</span>}
                     <ChevronRight size={17} />
                   </button>

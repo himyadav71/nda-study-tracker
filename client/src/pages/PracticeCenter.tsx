@@ -3,7 +3,7 @@
  * Field Manual Progress Deck: a focused exam operations room for drills, mock debriefs and full-paper PYQ attempts.
  */
 import { useEffect, useMemo, useState } from "react";
-import { Archive, ArrowLeft, ArrowUpRight, Atom, BookOpen, Brain, Check, CheckCircle2, ChevronLeft, Circle, ClipboardCheck, Clock3, Compass, FileText, Flag, Gauge, Languages, ListChecks, Menu, Play, RotateCcw, ShieldCheck, Target, TimerReset, Trophy, X } from "lucide-react";
+import { Archive, ArrowLeft, ArrowUpRight, Atom, BookOpen, Brain, Check, CheckCircle2, ChevronLeft, Circle, ClipboardCheck, Clock3, Compass, FileText, Flag, FolderOpen, Gauge, Languages, ListChecks, Menu, Play, RotateCcw, ShieldCheck, Target, TimerReset, Trophy, X } from "lucide-react";
 import { Link } from "wouter";
 import { buildPracticeSet, practiceQuestions, pyqPapers, type PracticeQuestion, type PyqPaper, type TestSubject } from "@/data/testBank";
 
