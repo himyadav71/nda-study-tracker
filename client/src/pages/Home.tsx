@@ -7,6 +7,7 @@ import type { LucideIcon } from "lucide-react";
 import {
   ArrowUpRight,
   Atom,
+  BarChart3,
   BookOpen,
   Brain,
   CalendarDays,
@@ -16,6 +17,7 @@ import {
   Circle,
   Compass,
   Filter,
+  FileText,
   Flag,
   Flame,
   FolderOpen,
@@ -73,6 +75,8 @@ const navItems = [
   { id: "focus", label: "Priority focus", icon: Target },
   { id: "priority-syllabus", label: "Priority syllabus", icon: BookOpen, href: "/priority-syllabus" },
   { id: "practice", label: "Practice & tests", icon: Trophy, href: "/practice" },
+  { id: "five-year-analysis", label: "Five-year analysis", icon: BarChart3, href: "/five-year-analysis" },
+  { id: "predicted-papers", label: "Predicted papers", icon: FileText, href: "/predicted-papers" },
   { id: "materials", label: "Study library", icon: FolderOpen, href: "/materials" },
 ];
 

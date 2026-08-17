@@ -1,0 +1,28 @@
+/* Five-year evidence desk and Practice Centre prediction bridge */
+.analysis-hero { background: linear-gradient(108deg, rgba(11,26,44,.98) 0%, rgba(21,50,65,.92) 56%, rgba(90,81,58,.74) 100%); }
+.evidence-notice { display: flex; align-items: center; justify-content: space-between; gap: 28px; border-top: 4px solid var(--orange); background: #fffaf0; }
+.evidence-notice h2 { margin: 6px 0 8px; color: var(--ink); font-family: "DM Serif Display", serif; font-size: clamp(27px, 3vw, 40px); font-weight: 400; }
+.evidence-notice p { max-width: 760px; margin: 0; color: #61706c; font-size: 12px; line-height: 1.7; }
+.evidence-stamp { display: inline-flex; flex: 0 0 auto; align-items: center; gap: 7px; padding: 10px 12px; color: var(--orange-dark); border: 1px solid #ebc3b2; background: #fff2eb; font-family: "IBM Plex Mono", monospace; font-size: 9px; font-weight: 700; letter-spacing: .06em; }
+.analysis-soft-section { background: #edf1ec; }
+.analysis-table-wrap { overflow-x: auto; border: 1px solid var(--line); background: #fffdf8; }
+.analysis-table { width: 100%; min-width: 560px; border-collapse: collapse; font-size: 12px; }
+.analysis-table th { padding: 12px 16px; color: #65726f; border-bottom: 1px solid var(--line); background: #f2eee5; font-family: "IBM Plex Mono", monospace; font-size: 9px; letter-spacing: .05em; text-align: left; text-transform: uppercase; }
+.analysis-table td { padding: 14px 16px; color: #34413e; border-bottom: 1px solid #ebe5dc; }
+.analysis-table tr:last-child td { border-bottom: 0; }
+.analysis-table td:first-child { color: var(--ink); font-weight: 700; }
+.tier-chip { display: inline-flex; padding: 4px 7px; border: 1px solid #e3c1b0; color: #a44729; background: #fff0e8; font-family: "IBM Plex Mono", monospace; font-size: 9px; font-weight: 700; }
+.tier-chip.p2, .tier-chip.p1-p2 { border-color: #cad7c8; color: #4b7661; background: #f0f8f1; }
+.analysis-model-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.analysis-model-grid article { padding: 22px; border: 1px solid var(--line); border-left: 4px solid var(--orange); background: #fffdf8; }
+.analysis-model-grid article:last-child { border-left-color: #4d7c79; }
+.analysis-model-head { display: flex; align-items: center; gap: 8px; margin-bottom: 13px; color: var(--ink); font-family: "IBM Plex Mono", monospace; font-size: 10px; font-weight: 700; letter-spacing: .07em; }
+.analysis-model-grid p { margin: 0; padding: 10px 0; color: #64716e; border-top: 1px solid #ece5da; font-size: 12px; line-height: 1.5; }
+.forecast-section { display: flex; align-items: end; justify-content: space-between; gap: 28px; background: var(--ink); }
+.forecast-section .eyebrow, .forecast-section h2, .forecast-section p { color: #fffdf8; }
+.forecast-section h2 { margin: 7px 0 10px; font-family: "DM Serif Display", serif; font-size: clamp(29px, 3vw, 42px); font-weight: 400; }
+.forecast-section p { max-width: 730px; margin: 0; color: #d0d9d2; font-size: 12px; line-height: 1.7; }
+.forecast-actions { display: grid; flex: 0 0 auto; gap: 10px; min-width: 245px; }
+.forecast-actions .session-secondary { justify-content: center; color: #fffdf8; border-color: #697a7e; background: transparent; }
+.practice-prediction-bridge { position: fixed; right: 22px; bottom: 22px; z-index: 40; display: inline-flex; align-items: center; gap: 8px; padding: 12px 15px; color: #fffdf8; border: 1px solid #ffae8e; border-radius: 4px; background: var(--orange-dark); box-shadow: 0 10px 24px rgba(11,26,44,.24); font-size: 11px; font-weight: 800; text-decoration: none; }
+@media (max-width: 760px) { .evidence-notice, .forecast-section { align-items: flex-start; flex-direction: column; }.analysis-model-grid { grid-template-columns: 1fr; }.forecast-actions { width: 100%; }.forecast-actions > * { justify-content: center; }.practice-prediction-bridge { right: 12px; bottom: 12px; max-width: calc(100vw - 24px); } }

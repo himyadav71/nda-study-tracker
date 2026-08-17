@@ -32,3 +32,16 @@
 - [x] Verify Study Materials Library readiness: protected procedures, supported-file validation, anonymous sign-in gateway, responsive views, and account-scoped access were checked; live sign-in handoff was blocked externally by a 403 response.
 - [x] Save the verified full-stack master-plan upgrade as a new checkpoint.
 - [x] Keep the Study Materials Library private to one signed-in account; do not add cross-student sharing or multi-student features.
+
+## Five-Year NDA PYQ Reanalysis and Predicted Paper
+
+- [x] Confirm the five-calendar-year NDA Mathematics and GAT source set, preserving official/archive links and the documented NDA II 2025 retrieval limitation.
+- [x] Reclassify the recovered Mathematics and GAT corpus by topic, subject and recurring question model, with OCR and archive caveats logged.
+- [x] Produce updated frequency tables, trend analysis and an evidence-based NDA II 2026 forecast.
+- [x] Author full-length predicted NDA II 2026 Mathematics and GAT practice papers with answer keys and solution rationale.
+- [x] Add the new reports and predicted papers to the tracker’s analysis and practice experience.
+- [x] Verify the source citations, paper structure and tracker integration, then save a checkpoint.
+- [x] Build an in-app five-year analysis page so the updated Mathematics and GAT evidence can be read inside the tracker.
+- [x] Add a predicted-paper launch entry within the existing Practice Centre, in addition to the standalone prediction route.
+- [x] Re-verify the linked analysis and prediction experience in the live tracker before checkpointing.
+- [ ] Save a new checkpoint containing the completed five-year analysis desk and predicted-paper integration.
