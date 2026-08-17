@@ -44,4 +44,4 @@
 - [x] Build an in-app five-year analysis page so the updated Mathematics and GAT evidence can be read inside the tracker.
 - [x] Add a predicted-paper launch entry within the existing Practice Centre, in addition to the standalone prediction route.
 - [x] Re-verify the linked analysis and prediction experience in the live tracker before checkpointing.
-- [ ] Save a new checkpoint containing the completed five-year analysis desk and predicted-paper integration.
+- [x] Save a new checkpoint containing the completed five-year analysis desk and predicted-paper integration.
