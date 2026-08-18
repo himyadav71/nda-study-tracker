@@ -222,3 +222,173 @@ export const predictedGatPaper: PredictedPaper = {
 };
 
 export const predictedPapers = [predictedMathPaper, predictedGatPaper];
+
+// Set 2 changes the question families and item stems so it can be used after Set 1
+// as a spaced retrieval simulation rather than as a reattempt of the same paper.
+const mathsSet2: PracticeQuestion[] = [];
+
+// Number systems: 8 questions.
+const hcfPairs: Array<[number, number, number]> = [[36, 48, 12], [42, 56, 14], [45, 60, 15], [54, 72, 18], [63, 84, 21], [70, 98, 14], [72, 96, 24], [75, 100, 25]];
+hcfPairs.forEach(([a, b, correct], index) => mathsSet2.push(question(`p2m-hcf-${index + 1}`, "Mathematics", "Number Systems", "P2", `The HCF of ${a} and ${b} is`, `${correct}`, [`${correct / 2}`, `${correct + 2}`, `${a + b}`], `The greatest common factor shared by ${a} and ${b} is ${correct}.`, index)));
+
+// Algebra: 24 questions, deliberately using binomial, logarithmic, discriminant and function models.
+for (let i = 0; i < 6; i += 1) {
+  const n = 5 + i;
+  const r = 2 + (i % 3);
+  const coefficients = [[10, 10, 5], [15, 20, 15], [21, 35, 35], [28, 56, 70], [36, 84, 126], [45, 120, 210]];
+  const correct = coefficients[i][r - 2];
+  mathsSet2.push(question(`p2m-binomial-${i + 1}`, "Mathematics", "Algebra: Binomial Theorem", "P1", `The coefficient of x^${r} in (1 + x)^${n} is`, `${correct}`, [`${correct - 1}`, `${correct + n}`, `${n * r}`], `The coefficient is ${n}C${r} = ${correct}.`, i + 8));
+}
+for (let i = 0; i < 6; i += 1) {
+  const base = 2 + (i % 2);
+  const power = 3 + i;
+  mathsSet2.push(question(`p2m-log-${i + 1}`, "Mathematics", "Algebra: Logarithms", "P1", `The value of log_${base}(${base}^${power}) is`, `${power}`, [`${power - 1}`, `${base}`, `${power + 1}`], `log_b(b^n) = n, so the value is ${power}.`, i + 14));
+}
+for (let i = 0; i < 6; i += 1) {
+  const b = 3 + i;
+  const c = 1 + i;
+  const correct = b * b - 4 * c;
+  mathsSet2.push(question(`p2m-discriminant-${i + 1}`, "Mathematics", "Algebra: Quadratic Equations", "P1", `For x² + ${b}x + ${c} = 0, the discriminant is`, `${correct}`, [`${b * b + 4 * c}`, `${b + c}`, `${correct + 4}`], `For ax² + bx + c, Δ = b² − 4ac = ${b}² − 4×${c} = ${correct}.`, i + 20));
+}
+for (let i = 0; i < 6; i += 1) {
+  const add = 2 + i;
+  const multiplier = 2 + (i % 3);
+  const x = 1 + i;
+  const correct = multiplier * (x + add);
+  mathsSet2.push(question(`p2m-function-${i + 1}`, "Mathematics", "Algebra: Functions", "P2", `If f(x) = x + ${add} and g(x) = ${multiplier}x, then g(f(${x})) equals`, `${correct}`, [`${x + add}`, `${multiplier * x + add}`, `${correct + multiplier}`], `First f(${x}) = ${x + add}; then g(${x + add}) = ${multiplier}×${x + add} = ${correct}.`, i + 26));
+}
+
+// Matrix product entries: 8 questions.
+for (let i = 0; i < 8; i += 1) {
+  const a = 1 + i;
+  const b = 2 + (i % 4);
+  const c = 3 + (i % 3);
+  const d = 1 + (i % 5);
+  const correct = a * c + b * d;
+  mathsSet2.push(question(`p2m-matrix-product-${i + 1}`, "Mathematics", "Matrices & Determinants", "P2", `For A = [[${a}, ${b}]] and B = [[${c}], [${d}]], the single entry of AB is`, `${correct}`, [`${a * c}`, `${b * d}`, `${a + b + c + d}`], `Multiply the row by the column: ${a}×${c} + ${b}×${d} = ${correct}.`, i + 32));
+}
+
+// Trigonometry and height-distance: 16 questions.
+for (let i = 0; i < 8; i += 1) {
+  const angle = [15, 30, 45, 60, 75, 90, 0, 45][i];
+  const correct = angle === 0 || angle === 90 ? "1" : "1";
+  mathsSet2.push(question(`p2m-trig-id-${i + 1}`, "Mathematics", "Trigonometry: Identities", "P1", `The value of sin²${angle}° + cos²${angle}° is`, correct, ["0", "1/2", "2"], `For every angle θ, sin²θ + cos²θ = 1.`, i + 40));
+}
+for (let i = 0; i < 8; i += 1) {
+  const base = 6 + 3 * i;
+  mathsSet2.push(question(`p2m-elevation-${i + 1}`, "Mathematics", "Height & Distance", "P2", `The angle of elevation of a tower is 45°. If the horizontal distance from its base is ${base} m, the height of the tower is`, `${base} m`, [`${base / 2} m`, `${base * 2} m`, `${base + 3} m`], `tan 45° = height/base = 1, so height equals ${base} m.`, i + 48));
+}
+
+// Calculus: 24 questions, using value-at-a-point, definite-integral and stationary-point models.
+for (let i = 0; i < 8; i += 1) {
+  const n = 2 + i;
+  const correct = n + 3;
+  mathsSet2.push(question(`p2m-derivative-value-${i + 1}`, "Mathematics", "Calculus: Differentiation", "P1", `If f(x) = x^${n} + 3x, then f′(1) is`, `${correct}`, [`${n}`, "3", `${correct + 1}`], `f′(x) = ${n}x^${n - 1} + 3, so f′(1) = ${n} + 3 = ${correct}.`, i + 56));
+}
+for (let i = 0; i < 8; i += 1) {
+  const n = 1 + i;
+  const correct = `1/${n + 1}`;
+  mathsSet2.push(question(`p2m-integral-unit-${i + 1}`, "Mathematics", "Calculus: Integration", "P1", `The value of ∫₀¹ x^${n} dx is`, correct, [`1/${n}`, `${n + 1}`, "1"], `∫₀¹x^n dx = [x^${n + 1}/${n + 1}]₀¹ = 1/${n + 1}.`, i + 64));
+}
+for (let i = 0; i < 8; i += 1) {
+  const coefficient = 4 + 2 * i;
+  const correct = coefficient / 2;
+  mathsSet2.push(question(`p2m-stationary-${i + 1}`, "Mathematics", "Calculus: Applications", "P2", `The stationary point of y = x² − ${coefficient}x occurs at x =`, `${correct}`, [`${coefficient}`, `${correct + 1}`, `${correct - 1}`], `dy/dx = 2x − ${coefficient}. Setting it to zero gives x = ${correct}.`, i + 72));
+}
+
+// Analytic, vector and three-dimensional geometry: 24 questions.
+for (let i = 0; i < 8; i += 1) {
+  const radius = 2 + i;
+  mathsSet2.push(question(`p2m-circle-radius-${i + 1}`, "Mathematics", "Coordinate Geometry: Circle", "P1", `The radius of the circle x² + y² = ${radius * radius} is`, `${radius}`, [`${radius * radius}`, `${radius / 2}`, `${radius + 1}`], `A circle x² + y² = r² has radius r = ${radius}.`, i + 80));
+}
+for (let i = 0; i < 8; i += 1) {
+  const a = 1 + i;
+  const b = 2 + i;
+  const correct = Math.sqrt(a * a + b * b).toFixed(3).replace(/\.000$/, "");
+  mathsSet2.push(question(`p2m-vector-magnitude-${i + 1}`, "Mathematics", "Vector Algebra", "P1", `The magnitude of the vector ${a}i + ${b}j is`, `${correct}`, [`${a + b}`, `${Math.abs(a - b)}`, `${(a * a + b * b)}`], `|a| = √(${a}² + ${b}²) = ${correct}.`, i + 88));
+}
+for (let i = 0; i < 8; i += 1) {
+  const x = 1 + i;
+  const y = 2 + i;
+  const z = 2 + i;
+  const correct = Math.sqrt(x * x + y * y + z * z).toFixed(3).replace(/\.000$/, "");
+  mathsSet2.push(question(`p2m-3d-distance-${i + 1}`, "Mathematics", "Three-Dimensional Geometry", "P1", `The distance of (${x}, ${y}, ${z}) from the origin is`, `${correct}`, [`${x + y + z}`, `${x * x + y * y + z * z}`, `${Math.abs(x - y - z)}`], `Distance from origin = √(x² + y² + z²) = ${correct}.`, i + 96));
+}
+
+// Statistics and probability: 16 questions.
+for (let i = 0; i < 8; i += 1) {
+  const middle = 4 + i;
+  mathsSet2.push(question(`p2m-median-${i + 1}`, "Mathematics", "Statistics", "P1", `The median of ${middle - 2}, ${middle - 1}, ${middle}, ${middle + 1}, ${middle + 2} is`, `${middle}`, [`${middle - 1}`, `${middle + 1}`, `${middle + 2}`], `In an ordered list of five values, the middle (third) value is the median.`, i + 104));
+}
+for (let i = 0; i < 8; i += 1) {
+  const total = 2 + i;
+  const correct = `${total}/8`;
+  mathsSet2.push(question(`p2m-prob-coins-${i + 1}`, "Mathematics", "Probability", "P1", `Two fair coins are tossed. The probability of getting exactly ${i % 2 === 0 ? "one head" : "two heads"} is`, i % 2 === 0 ? "1/2" : "1/4", ["1/4", "3/4", correct], `For two fair coins, exactly one head occurs in HT and TH (2 of 4 outcomes); two heads occurs once (1 of 4).`, i + 112));
+}
+
+const englishSet2: PracticeQuestion[] = [];
+const set2Vocab = [
+  ["lucid", "clear and easy to understand", "confusing", "noisy", "brief"], ["tenacious", "persistent and determined", "careless", "timid", "temporary"], ["pragmatic", "practical and realistic", "idealistic", "careless", "silent"], ["rectify", "put right or correct", "damage", "repeat", "delay"], ["versatile", "able to adapt to many uses", "fragile", "narrow", "uncertain"],
+  ["austere", "simple and without luxury", "lavish", "noisy", "careless"], ["impartial", "fair and not biased", "prejudiced", "impatient", "unclear"], ["sporadic", "occurring irregularly", "continuous", "planned", "rapid"], ["novice", "a beginner", "an expert", "a critic", "a leader"], ["salient", "most noticeable or important", "hidden", "minor", "temporary"],
+  ["validate", "confirm that something is sound", "ignore", "contradict", "postpone"], ["frugal", "careful with money or resources", "wasteful", "wealthy", "weak"], ["elated", "very happy", "angry", "tired", "uncertain"], ["coerce", "persuade by force or threat", "praise", "assist", "explain"], ["astute", "quick to understand and judge", "slow", "careless", "ordinary"],
+] as const;
+set2Vocab.forEach(([word, correct, a, b, c], index) => englishSet2.push(question(`p2g-vocab-${index + 1}`, "English", "Vocabulary", "P1", `Choose the word nearest in meaning to “${word}”.`, correct, [a, b, c], `“${word}” means ${correct}.`, index)));
+const set2Grammar = [
+  ["The principal, along with the teachers, ___ present.", "was", "were", "have", "are", "The main subject is singular: principal."], ["She has lived here ___ 2019.", "since", "for", "from", "by", "Use ‘since’ with a starting point in time."], ["If he ___ harder, he would have passed.", "had worked", "worked", "has worked", "would work", "This is the unreal past conditional."], ["The officer ordered that the gate ___ closed.", "be", "is", "was", "being", "The mandative subjunctive uses the base form ‘be’."], ["He is accustomed ___ early.", "to rising", "to rise", "for rising", "with rise", "‘Accustomed to’ is followed by a noun or gerund."],
+  ["Scarcely had the match begun ___ it started raining.", "when", "than", "then", "that", "The paired form is ‘scarcely … when’."], ["The furniture ___ being shifted.", "is", "are", "were", "have", "‘Furniture’ is an uncountable singular noun."], ["I would rather you ___ now.", "left", "leave", "will leave", "had left", "‘Would rather’ commonly takes a past form for present preference."], ["This is the best book I ___.", "have read", "had read", "read", "am reading", "With a superlative, present perfect is standard here."], ["She succeeded ___ solving the problem.", "in", "at", "for", "with", "The collocation is ‘succeed in’."],
+  ["The train arrived ___ time.", "on", "at", "in", "by", "Use ‘on time’ for punctual arrival."], ["He denied ___ the document.", "signing", "to sign", "sign", "signed", "Deny is followed by a gerund."], ["The report was written ___ a senior officer.", "by", "with", "from", "at", "The passive agent is introduced by ‘by’."], ["Neither of the answers ___ correct.", "is", "are", "were", "have", "Neither is treated as singular in formal English."], ["She spoke so softly that I could ___ hear her.", "hardly", "hard", "harder", "hardest", "‘Hardly’ means almost not."],
+] as const;
+set2Grammar.forEach(([prompt, correct, a, b, c, explanation], index) => englishSet2.push(question(`p2g-grammar-${index + 1}`, "English", "Grammar & Usage", "P1", prompt, correct, [a, b, c], explanation, index + 15)));
+const set2Idioms = [
+  ["keep an eye on", "watch carefully", "ignore", "celebrate", "become tired"], ["weather the storm", "survive a difficult period", "avoid rain", "cause trouble", "travel quickly"], ["the last straw", "the final problem that ends patience", "a small reward", "a lucky event", "a quick solution"], ["under the weather", "slightly unwell", "outdoors", "very energetic", "well prepared"], ["see eye to eye", "agree completely", "look closely", "argue loudly", "avoid contact"],
+  ["on the same page", "sharing the same understanding", "reading together", "being late", "changing a plan"], ["throw in the towel", "give up", "start a contest", "work late", "take a break"], ["cut corners", "do something cheaply or carelessly", "take a shortcut road", "make a shape", "decorate a room"], ["a fish out of water", "uncomfortable in an unfamiliar setting", "a strong swimmer", "very successful", "quiet and calm"], ["go the extra mile", "make more effort than expected", "travel far", "delay a task", "repeat a mistake"],
+] as const;
+set2Idioms.forEach(([phrase, correct, a, b, c], index) => englishSet2.push(question(`p2g-idiom-${index + 1}`, "English", "Idioms & Phrases", "P1", `The idiom “${phrase}” means`, correct, [a, b, c], `In standard use, “${phrase}” means “${correct}”.`, index + 30)));
+const set2Cloze = [
+  ["The instructor asked the cadets to listen ___.", "carefully", "careful", "care", "carefulness"], ["We will proceed ___ the signal is received.", "once", "because", "unless", "although"], ["The notes were arranged ___ topic.", "by", "for", "at", "with"], ["He revised daily ___ his confidence improved.", "so that", "despite", "unless", "whereas"], ["The answer is ___ difficult than it appears.", "less", "least", "much", "very"],
+  ["She completed the task ___ any assistance.", "without", "with", "through", "from"], ["The briefing begins ___ 0800 hours.", "at", "on", "in", "by"], ["The team was praised ___ its discipline.", "for", "from", "with", "at"], ["We should verify the result ___ submitting it.", "before", "after", "because", "unless"], ["The route was changed ___ the bridge was closed.", "because", "although", "unless", "whereas"],
+] as const;
+set2Cloze.forEach(([prompt, correct, a, b, c], index) => englishSet2.push(question(`p2g-cloze-${index + 1}`, "English", "Cloze & Connectors", "P2", prompt, correct, [a, b, c], "Choose the option that makes the sentence grammatically correct and meaningful.", index + 40)));
+
+const gatSet2: PracticeQuestion[] = [...englishSet2];
+gatSet2.push(...factQuestions("p2g-physics", "Physics", [
+  ["velocity", "displacement per unit time"], ["inertia", "tendency of a body to resist change in its state"], ["impulse", "force multiplied by time interval"], ["potential energy", "energy due to position or configuration"], ["Archimedes’ principle", "an immersed body experiences an upthrust equal to displaced fluid weight"], ["terminal velocity", "constant maximum speed reached through a fluid"], ["amplitude", "maximum displacement from the mean position"], ["wavelength", "distance between successive points in the same phase"], ["transformer", "device that changes alternating voltage"], ["fuse", "safety device that melts when current is excessive"], ["electrolysis", "chemical change caused by electric current"], ["diode", "component allowing current mainly in one direction"], ["concave mirror", "mirror that converges parallel rays to a focus"], ["dispersion", "splitting of white light into component colours"], ["total internal reflection", "complete reflection from a denser medium at a critical condition"], ["latent heat", "heat absorbed or released without temperature change"], ["absolute zero", "lowest possible thermodynamic temperature"], ["nuclear fission", "splitting of a heavy nucleus"], ["nuclear fusion", "combining light nuclei with energy release"], ["semiconductor", "material with conductivity between conductor and insulator"], ["torque", "turning effect of a force"], ["angular momentum", "rotational analogue of linear momentum"], ["projectile", "body moving under gravity after projection"], ["refractive index", "ratio related to speed of light in media"], ["photoelectric effect", "emission of electrons from a material due to light"],
+] as const, 90));
+gatSet2.push(...factQuestions("p2g-chem", "Chemistry", [
+  ["molarity", "moles of solute per litre of solution"], ["mole", "amount containing Avogadro number of entities"], ["electrolyte", "substance producing ions in solution or melt"], ["exothermic reaction", "reaction that releases heat"], ["endothermic reaction", "reaction that absorbs heat"], ["distillation", "separation based on differences in boiling point"], ["filtration", "separation of insoluble solid from a fluid"], ["polymer", "large molecule built from repeating units"], ["isotope", "atoms of an element with different neutron numbers"], ["noble gases", "group of elements with filled outer electron shells"], ["amphoteric oxide", "oxide reacting with both acids and bases"], ["electroplating", "depositing a metal coating using electricity"], ["rusting", "corrosion of iron in presence of oxygen and water"], ["hard water", "water containing dissolved calcium or magnesium salts"], ["indicator", "substance showing acidity or alkalinity by colour change"],
+] as const, 115));
+gatSet2.push(...factQuestions("p2g-bio", "Biology & General Science", [
+  ["ribosome", "cell structure associated with protein synthesis"], ["nucleus", "cell organelle containing genetic material"], ["xylem", "plant tissue that carries water and minerals"], ["phloem", "plant tissue that transports prepared food"], ["stomata", "pores involved in gas exchange in leaves"], ["respiration", "controlled release of energy from food"], ["enzyme", "biological catalyst"], ["hormone", "chemical messenger produced in small amounts"], ["neuron", "cell specialised for nerve impulse transmission"], ["reflex action", "rapid involuntary response to a stimulus"], ["antibody", "protein involved in specific immune defence"], ["antibiotic", "substance used against certain bacterial infections"], ["malaria", "disease transmitted by female Anopheles mosquitoes"], ["food chain", "sequence showing transfer of energy through organisms"], ["biodiversity", "variety of living organisms in an area"],
+] as const, 130));
+gatSet2.push(...factQuestions("p2g-history", "History & Culture", [
+  ["Harappan seals", "artefacts often bearing animal motifs and script signs"], ["Vedic literature", "early Indian texts including the Vedas"], ["Jainism", "tradition associated with Mahavira and non-violence"], ["Kalinga War", "conflict after which Ashoka embraced dhamma"], ["Nalanda", "ancient centre of learning in present-day Bihar"], ["Chola administration", "South Indian imperial system noted for local institutions"], ["Delhi Sultanate", "series of Turkic and Afghan dynasties ruling from Delhi"], ["Mughal Empire", "empire founded in India by Babur in 1526"], ["Permanent Settlement", "revenue arrangement introduced by the East India Company in Bengal"], ["Swadeshi Movement", "movement promoting indigenous goods after the 1905 Bengal partition"], ["Home Rule Movement", "movement demanding self-government within the British Empire"], ["Champaran Satyagraha", "Gandhi-led movement linked with indigo cultivators"], ["Dandi March", "1930 march associated with the Salt Law protest"], ["Cabinet Mission", "1946 mission proposing a framework for Indian constitutional transfer"], ["Indian Independence Act", "1947 Act creating India and Pakistan as dominions"], ["Bharatanatyam", "classical dance form associated with Tamil Nadu"], ["Ajanta caves", "rock-cut Buddhist cave complex known for paintings"], ["Konark Sun Temple", "Odisha temple renowned for its chariot form"], ["Sangam literature", "early Tamil literary corpus"], ["Panchayati Raj", "system of local self-government in rural India"],
+] as const, 145));
+gatSet2.push(...factQuestions("p2g-geo", "Geography", [
+  ["rotation of Earth", "spinning of Earth on its axis causing day and night"], ["revolution of Earth", "Earth’s orbit around the Sun"], ["equinox", "time when day and night are approximately equal"], ["solstice", "time when the Sun’s apparent path reaches an extreme"], ["continental shelf", "gently sloping submerged edge of a continent"], ["tsunami", "series of sea waves often caused by undersea disturbance"], ["rain shadow", "dry area on the leeward side of a mountain range"], ["jet stream", "fast high-altitude air current"], ["western disturbances", "extratropical weather systems affecting northwestern India"], ["alluvial soil", "soil deposited by rivers"], ["black soil", "soil associated with basaltic regions and cotton cultivation"], ["red soil", "iron-rich soil with a reddish colour"], ["estuary", "tidal mouth where a river meets the sea"], ["watershed", "high land dividing drainage basins"], ["plateau", "elevated area with a relatively level surface"],
+] as const, 165));
+gatSet2.push(...factQuestions("p2g-polity", "Polity, Defence & Static GK", [
+  ["Preamble", "introductory statement of the Constitution’s ideals"], ["President’s Rule", "constitutional arrangement under Article 356"], ["Prime Minister", "head of the Union Council of Ministers"], ["Supreme Court", "highest court of India"], ["Finance Commission", "constitutional body recommending fiscal distribution"], ["NITI Aayog", "policy think tank of the Government of India"], ["National Emergency", "emergency proclaimed under Article 352"], ["Chief Election Commissioner", "head of the Election Commission of India"], ["Indian Coast Guard", "maritime law-enforcement and search-and-rescue force"], ["Siachen Glacier", "high-altitude glacier in the eastern Karakoram range"],
+] as const, 180));
+
+export const predictedMathPaperSet2: PredictedPaper = {
+  id: "predicted-nda2-2026-maths-set-2",
+  label: "NDA II 2026 · Predicted Mathematics Paper · Set 2",
+  subject: "Mathematics",
+  minutes: 150,
+  marks: 300,
+  evidenceNote: "Spaced-practice Set 2: 120 original Mathematics questions using different item stems and models from Set 1, while retaining the five-year priority weighting.",
+  questions: mathsSet2,
+};
+
+export const predictedGatPaperSet2: PredictedPaper = {
+  id: "predicted-nda2-2026-gat-set-2",
+  label: "NDA II 2026 · Predicted GAT Paper · Set 2",
+  subject: "GAT",
+  minutes: 150,
+  marks: 600,
+  evidenceNote: "Spaced-practice Set 2: 50 English and 100 GK original questions using fresh recall and application prompts; refresh current affairs separately before the exam.",
+  questions: gatSet2,
+};
+
+export const predictedPapersSet2 = [predictedMathPaperSet2, predictedGatPaperSet2];
+export const allPredictedPapers = [...predictedPapers, ...predictedPapersSet2];

@@ -9,3 +9,9 @@ The five-year reanalysis update adds a dedicated `/predicted-papers` route. Desk
 The in-app `/five-year-analysis` desk now exposes the source scope and caveat, complete-paper Mathematics baseline, GAT label-corpus hierarchy, repeated question models and the NDA II 2026 revision forecast. Desktop and phone-sized visual checks found the tables, model cards and forecast actions legible; the narrow table view remains horizontally scrollable. The Practice Centre also exposes a fixed full-predicted-paper action in addition to the standalone prediction route. The final TypeScript check, all five Vitest tests and the production build pass.
 
 The completed five-year analysis and predicted-paper integration was saved in project checkpoint `28bd07d6`.
+
+The Set 2 spaced-simulation upgrade presents four full-paper launch cards: Mathematics Set 1, GAT Set 1, Mathematics Set 2 and GAT Set 2. Desktop review confirmed the four-card selection deck and the new Practice Centre bridge. Phone-width review confirmed that all four cards stack cleanly with readable set identifiers, duration, call-to-action labels and the 3–5 day spacing guidance; the Practice Centre link remains visible in the test-order grid.
+
+Live prediction-desk inspection confirms the 540-item count, four full papers, two spaced sets and Set 2 question-card labels. The direct browser click did not advance the local React state in the sandbox automation, so the launch flow will be verified through a controlled page-level interaction before checkpointing.
+
+The controlled live launch opened GAT Set 2 correctly: its header identifies the full predicted GAT paper, the 150-minute timer started, Question 1 of 150 rendered a fresh English vocabulary item with four answer choices, and the 150-question navigator loaded. The direct pointer-click limitation was isolated to the sandbox automation; the component’s launch handler itself functions correctly.

@@ -45,3 +45,13 @@
 - [x] Add a predicted-paper launch entry within the existing Practice Centre, in addition to the standalone prediction route.
 - [x] Re-verify the linked analysis and prediction experience in the live tracker before checkpointing.
 - [x] Save a new checkpoint containing the completed five-year analysis desk and predicted-paper integration.
+
+## Second Predicted-Paper Set for Spaced Practice
+
+- [x] Define a distinct, evidence-weighted blueprint for Mathematics Set 2 and GAT Set 2.
+- [x] Author a second 120-question Mathematics simulation with answer key and concise explanations.
+- [x] Author a second 150-question GAT simulation with the official English and GK balance, answer key and concise explanations.
+- [x] Add Set 2 selection and launch flows to the prediction centre and Practice Centre.
+- [x] Extend regression tests for Set 2 paper length, section balance, key integrity and non-duplication from Set 1.
+- [x] Verify desktop/mobile flows for the spaced-simulation upgrade.
+- [ ] Save a checkpoint containing the completed Set 2 spaced-simulation upgrade.
