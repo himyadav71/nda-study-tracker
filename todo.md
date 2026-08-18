@@ -54,4 +54,4 @@
 - [x] Add Set 2 selection and launch flows to the prediction centre and Practice Centre.
 - [x] Extend regression tests for Set 2 paper length, section balance, key integrity and non-duplication from Set 1.
 - [x] Verify desktop/mobile flows for the spaced-simulation upgrade.
-- [ ] Save a checkpoint containing the completed Set 2 spaced-simulation upgrade.
+- [x] Save a checkpoint containing the completed Set 2 spaced-simulation upgrade.
